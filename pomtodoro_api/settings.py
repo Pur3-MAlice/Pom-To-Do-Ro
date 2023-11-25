@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
     'tasks',
     'profiles',
+    'categories',
 ]
 
 MIDDLEWARE = [
