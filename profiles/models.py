@@ -10,6 +10,8 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True)
     
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.owner}'s profile"
