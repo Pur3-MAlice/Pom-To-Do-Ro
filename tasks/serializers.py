@@ -1,10 +1,11 @@
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from .models import Task
 
 class TaskSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    due_date = serializers.DateTimeField(allow_null=True, required=False)
+    due_date = serializers.DateTimeField(allow_null=True, required=False, format="%b %d, %Y %H:%M")
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     urgent = serializers.BooleanField()
     important = serializers.BooleanField()
