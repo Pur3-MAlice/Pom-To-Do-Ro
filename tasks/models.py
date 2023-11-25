@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from categories.models import Category
 
 
 class Task(models.Model):
@@ -15,6 +16,7 @@ class Task(models.Model):
     content = models.TextField(blank=True)
     important = models.BooleanField(default=False)
     urgent = models.BooleanField(default=False)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         ordering = ['-created_at']

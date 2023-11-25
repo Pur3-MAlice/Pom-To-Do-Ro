@@ -8,3 +8,8 @@ YOU CAN FIND MY STORIES, EPICS AND TASKS HERE. PLEASE NOTE THEIR INTERCONNECTIVI
 Sprint 2 
 
 - Whilst sprint 1 was focused on the user function and creating the ability to log in, log out and some authentication based on editsing there, (all backend fucntions, none front end). Spritn two was mainly compromised as the 'TASK SPRINT'. In this spirnt the function was to create the task app, build out the model and serialiser and made teh backend dajngo rest task views and creations. All of which happned, I also implemented the important/urgent booleans, as well as the user date time picker for the due_date. This sprint built the foundation of the User's ability to add tasks.
+
+
+Sprint 3
+
+Re-factored the profile and the tasks views for simplicity, created the catogoreis app and attached the FK to the task. Built tests for tasks app and placed in validation based on these. User validation handling to come with REACT frontend. Whilst the agile method of working in sprint on collective tasks that build to a User story is a great place to start, it becomes difficult when having to build a whole backend before starting. As I know i need to build the logic and functionaility to alot of these user stories and epics before I can start finishing them off fully. I'm finding that alot of tasks can be done, but sprints aren't focusing on stories, but at this point it is backend vs frontend. But this is my prefernce of work, I would rather get the logic down first, then build the frontend and from that point attempt tweaks.
