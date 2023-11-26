@@ -10,6 +10,9 @@ class ProfileSerializer(serializers.ModelSerializer):
     category_title = serializers.SerializerMethodField()
     task_title = serializers.SerializerMethodField()
     habit_title = serializers.SerializerMethodField()
+    tasks_count = serializers.ReadOnlyField()
+    habits_count = serializers.ReadOnlyField()
+    categories_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -38,5 +41,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'is_owner', 'name',
             'created_at', 'updated_at', 'category_title',
-            'task_title', 'habit_title',
+            'task_title', 'habit_title', 'tasks_count',
+            'habits_count', 'categories_count'
             ]

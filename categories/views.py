@@ -1,4 +1,5 @@
-from rest_framework import generics, permissions
+from django.db.models import Count
+from rest_framework import generics, permissions, filters
 from pomtodoro_api.permissions import IsOwnerOrReadOnly
 from .models import Category
 from .serializers import CategorySerializer
@@ -11,7 +12,22 @@ class CategoryList(generics.ListCreateAPIView):
     """
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('title')
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter
+    ]
+    search_fields = [
+        'owner__username',
+        'title', 
+        'content'
+    ]
+    ordering_fields = [
+        'title', 
+        'owner__username'
+    ]
+
+
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

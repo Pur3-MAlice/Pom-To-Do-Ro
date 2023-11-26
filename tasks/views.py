@@ -1,4 +1,5 @@
-from rest_framework import generics, permissions
+from django.db.models import Count
+from rest_framework import generics, permissions, filters
 from pomtodoro_api.permissions import IsOwnerOrReadOnly
 from .models import Task
 from .serializers import TaskSerializer
@@ -12,6 +13,22 @@ class TaskList(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Task.objects.all()
+
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter
+    ]
+    search_fields = [
+        'owner__username',
+        'title', 
+        'content',
+        'category__title'
+    ]
+    ordering_fields = [
+        'title', 
+        'owner__username',
+        'category'
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

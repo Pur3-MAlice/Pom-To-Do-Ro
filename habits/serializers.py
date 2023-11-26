@@ -6,7 +6,8 @@ class HabitSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
-    streak = serializers.IntegerField(read_only=True) 
+    streak = serializers.IntegerField(read_only=True)
+
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -18,6 +19,6 @@ class HabitSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'is_owner', 'profile_id',
             'created_at', 'updated_at', 'title', 'completed',
-            'streak',
+            'streak', 
         ]
 
