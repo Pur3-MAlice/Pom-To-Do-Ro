@@ -18,6 +18,5 @@ class HabitSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'is_owner', 'profile_id',
             'created_at', 'updated_at', 'title', 'completed',
-            'last_completed_date', 'chain_count'
         ]
 
