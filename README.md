@@ -20,3 +20,8 @@ Sprint 4
 
 Sprint 5 
 - This sprint was focused on ensuring that the backend API created all the information i needed for the app, as well as worked well undertesting. So this sprint, did not nesicarily move the dail forward in terms of EPICs or user stories, but did ensure that moving forward the backend API will be sound, searchable and holds the information relavant to the overall app. this includes creating tests for nearly all the apps (task, habit, category), adding in search and filters to the listviews and then editing the serializers to show the correct data. And then also slightly tweaking the serializers and views to present the data exactly how it is required. 
+
+
+Sprint 6
+
+The first 5 sprints of this project have been focused on the backend of the project. And whilst with Agile you would completed User Stories one at a time, doing the front and backend simultaniouly, I wanted to build the basic skeleton of the backend first to have a solid foundation to build from. The backend at this point is by no means done, it is simply functional and functioning. This sprint's aim was to create the frontend folder in the project, prepare the backend settings for a front and back end in one repository and then also to build out the first components the BasePage component which will be the base for the visual structure of the app and the NavBar as this is easily completed. 
