@@ -1,29 +1,22 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Container, Nav } from "react-bootstrap";
 
 const NavBar = () => {
   return (
-    <Navbar expand="md" fixed="bottom">
-      <Container>
-        <Navbar.Brand>
-          <img src='' alt="logo" height="45" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto text-left">
-            <Nav.Link>
-              <i className="fas fa-home"></i>Home
-            </Nav.Link>
-            <Nav.Link>
-              <i className="fas fa-sign-in-alt"></i>Sign in
-            </Nav.Link>
-            <Nav.Link>
-              <i className="fas fa-user-plus"></i>Sign up
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <Nav justify defaultActiveKey="/home"
+    style={{ 
+        padding:'30px 0 0 0',
+        }}>
+      <Nav.Item>
+        <Nav.Link href="/home">BasePage <i class="fa-solid fa-campground"></i></Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-1">Profile <i class="fa-solid fa-sliders"></i></Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-2">Logout <i class="fa-solid fa-door-open"></i></Nav.Link>
+      </Nav.Item>
+    </Nav>
   );
 };
 
