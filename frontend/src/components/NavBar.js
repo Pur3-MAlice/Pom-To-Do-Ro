@@ -1,20 +1,40 @@
 import React from "react";
-import { Container, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom/";
 
 const NavBar = () => {
   return (
-    <Nav justify defaultActiveKey="/home"
-    style={{ 
-        padding:'30px 0 0 0',
-        }}>
+    <Nav
+      justify
+      defaultActiveKey="/"
+      style={{
+        padding: "30px 0 0 0",
+      }}
+    >
       <Nav.Item>
-        <Nav.Link href="/home">BasePage <i class="fa-solid fa-campground"></i></Nav.Link>
+        <NavLink to="/">
+          BasePage <i class="fa-solid fa-campground"></i>
+        </NavLink>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-1">Profile <i class="fa-solid fa-sliders"></i></Nav.Link>
+        <NavLink to="/profile">
+          Profile <i class="fa-solid fa-user-astronaut"></i>
+        </NavLink>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-2">Logout <i class="fa-solid fa-door-open"></i></Nav.Link>
+        <NavLink to="/signout">
+          Signout <i class="fa-solid fa-ghost"></i>
+        </NavLink>
+      </Nav.Item>
+      <Nav.Item>
+        <NavLink to="/signin">
+          Signin <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </NavLink>
+      </Nav.Item>
+      <Nav.Item>
+        <NavLink to="/register">
+          Register <i class="fa-solid fa-list-check"></i>
+        </NavLink>
       </Nav.Item>
     </Nav>
   );
