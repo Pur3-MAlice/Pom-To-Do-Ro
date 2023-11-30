@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "../styles/SignInUpForm.module.css";
-import appStyles from "../styles/Thingy.module.css";
+import appStyles from "../App.module.css";
 
 import { Form, Button, Container } from "react-bootstrap";
 

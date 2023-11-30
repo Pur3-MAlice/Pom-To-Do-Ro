@@ -1,46 +1,131 @@
-.Row {
-    height: calc(100vh - 81px);
-  }
-  .Input {
-    background: #ffffff;
-    border: 1px solid #f0f1f9;
-    box-sizing: border-box;
-    border-radius: 2px;
-    color: #7177a1;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .Header {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #2142b2;
-  }
-  
-  .Link {
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    margin: auto;
-  }
-  
-  .Link span {
-    color: #ff9254;
-  }
-  
-  .Container {
-    padding: 30px 10px;
-  }
-  
-  .SignInCol {
-    height: 320px;
-  }
-  
-  .SignUpCol {
-    height: 375px;
-  }
+.Input {
+  background: #ffffff;
+  border: 1px solid #f0f1f9;
+  box-sizing: border-box;
+  border-radius: 2px;
+  color: #7177a1;
+  text-align: center;
+  padding: 10px;
+}
+
+.Title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fcfcfc;
+}
+
+.Header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6d1010;
+}
+
+.Link {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.Link span {
+  color: #ff9254;
+}
+
+.Container {
+  padding: 30px 10px;
+}
+
+.SignInCol {
+  height: 320px;
+}
+
+.SignUpCol {
+  height: 375px;
+}
+
+.FormContent {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #dadadf;
+}
+
+.Button {
+  font-size: 0.8rem;
+  align-self: center;
+  border-radius: 100px;
+  border-color: transparent;
+  padding: 4px 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  min-width: 75px;
+}
+
+.Button:hover {
+  opacity: 0.8;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.Button:hover:active {
+  background-color: #2142b2 !important;
+}
+
+.Button:active {
+  background-color: #2142b2 !important;
+}
+
+.Button:focus {
+  background-color: #2142b2;
+}
+
+.Wide {
+  padding: 10px 50px;
+  width: 100%;
+}
+
+.Blue,
+.BlueOutline:hover,
+.Bright:hover {
+  background-color: #2142b2;
+  color: #ffffff;
+}
+
+.BlueOutline,
+.Blue:hover {
+  /* border: 1px solid #2142b2; */
+  background-color: #ffffff;
+  color: #2142b2;
+}
+
+.Black,
+.BlackOutline:hover {
+  /* background-color: #242a3d;
+  color: white; */
+  background-color: #242a3d;
+  color: aliceblue;
+}
+
+.Black:hover,
+.BlackOutline {
+  /* background-color: #dadadf;
+  color: #242a3d;
+  border-color: #242a3d; */
+  background-color: aliceblue;
+  color: #242a3d;
+}
+
+.Bright {
+  background-color: #2ed9ff;
+  color: #2142b2;
+}
