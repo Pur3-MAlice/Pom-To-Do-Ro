@@ -1,3 +1,7 @@
+.Row {
+  height: calc(50vh - 100px);
+}
+
 .Input {
   background: #ffffff;
   border: 1px solid #f0f1f9;
@@ -12,7 +16,7 @@
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 30px;
   text-align: center;
   letter-spacing: 0.2em;
   text-transform: uppercase;

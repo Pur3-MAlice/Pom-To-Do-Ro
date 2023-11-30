@@ -1,16 +1,18 @@
 .App {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #152b37;
-    min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #152b37;
+  min-height: 100vh;
+  overflow-x: hidden
 }
 
 .div {
-    background-color: #2b5f73;
+  background-color: #2b5f73;
+  
 }
 
 .Main {
-    padding-top: 81px;
-    overflow-x: hidden;
+  padding-top: 81px;
+
 }
 
 .Content {
@@ -64,12 +66,15 @@ figure {
 *::-webkit-scrollbar {
   width: 5px;
 }
+
 *::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
+
 *::-webkit-scrollbar-thumb {
   background: #888;
 }
+
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

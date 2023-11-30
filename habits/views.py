@@ -11,7 +11,7 @@ class HabitList(generics.ListCreateAPIView):
     The perform_create method associates the Habit with the logged in user.
     """
     serializer_class = HabitSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Habit.objects.all().order_by('title')
     serializer_class = HabitSerializer
     filter_backends = [
