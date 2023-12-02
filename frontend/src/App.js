@@ -1,5 +1,6 @@
 import './api/axiosDefaults';
 import { Route, Switch } from "react-router-dom";
+import { Row, Col } from 'react-bootstrap';
 
 import styles from './App.module.css';
 
@@ -17,7 +18,18 @@ function App() {
             } />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route render={() => <p>Page not found!</p>} />
+          <Route render={() =>
+            <Row className={`justify-content-md-center ${styles.Row}`}>
+              <Col className="my-auto p-md-2" md={12}>
+                <div className={styles.Title}>
+                  <h1>Pom-To-Do-Ro</h1>
+                  <h4 className={styles.Title}>
+                    Sorry we can't find the page you were looking for!
+                  </h4>
+                </div>
+              </Col>
+            </Row>
+          } />
         </Switch>
 
     </div>

@@ -12,7 +12,21 @@
 
 .Main {
   padding-top: 81px;
+}
 
+.Row {
+  height: calc(100vh - 100px);
+}
+
+.Title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fcfcfc;
 }
 
 .Content {

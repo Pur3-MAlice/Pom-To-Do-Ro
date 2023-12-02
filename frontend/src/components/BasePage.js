@@ -3,7 +3,6 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import NavBar from './NavBar';
 import { Route, Switch } from 'react-router-dom';
-import SignInForm from './SignInForm';
 
 const BasePage = () => {
   return (
@@ -13,10 +12,8 @@ const BasePage = () => {
           Content for Div 1
           <Container>
             <Switch>
-              <Route exact path="/signin" render={() => <SignInForm/>} />
               <Route exact path="/signout" render={() => <p>Signout</p>} />
               <Route exact path="/profile" render={() => <p>Profile</p>} />  
-              <Route exact path="/register" render={() => <p>Register</p>} />
             </Switch>
           </Container>
         </Col>

@@ -26,16 +26,6 @@ const NavBar = () => {
           Signout <i class="fa-solid fa-ghost"></i>
         </NavLink>
       </Nav.Item>
-      <Nav.Item>
-        <NavLink to="/signin">
-          Signin <i class="fa-solid fa-wand-magic-sparkles"></i>
-        </NavLink>
-      </Nav.Item>
-      <Nav.Item>
-        <NavLink to="/register">
-          Register <i class="fa-solid fa-list-check"></i>
-        </NavLink>
-      </Nav.Item>
     </Nav>
   );
 };
