@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styles from "../styles/SignInUpForm.module.css";
 import appStyles from "../App.module.css";
@@ -15,8 +15,6 @@ const SignInForm = () => {
   const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
-
-  const history = useHistory();
 
   const handleChange = (event) => {
     setsignInData({
