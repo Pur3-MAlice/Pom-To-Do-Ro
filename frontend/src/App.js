@@ -1,10 +1,7 @@
 import "./api/axiosDefaults";
 import { Route, Switch } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-import { createContext, useEffect, useMemo, useState } from "react";
-// import axios from "axios";
-// import { axiosReq, axiosRes } from "./api/axiosDefaults";
-// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { createContext } from "react";
 
 import styles from "./App.module.css";
 

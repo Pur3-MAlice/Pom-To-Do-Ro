@@ -31,7 +31,7 @@ const NavBar = () => {
       </Nav.Item>
       <Nav.Item>
         <NavLink to="/profile">
-         Profile<i className="fa-solid fa-user-astronaut"></i>
+         {currentUser?.username}'s Profile<i className="fa-solid fa-user-astronaut"></i>
         </NavLink>
       </Nav.Item>
       <Nav.Item>
