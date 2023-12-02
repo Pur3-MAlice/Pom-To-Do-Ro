@@ -5,11 +5,10 @@ import styles from './App.module.css';
 
 import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SignInForm";
-import NewUser from './components/NewUser'
 import BasePage from './components/BasePage';
 
 function App() {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   return (
     <div className={styles.App}>
         <Switch>
