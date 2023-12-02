@@ -1,8 +1,21 @@
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom/";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import axios from "axios";
 
 
 const NavBar = () => {
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Nav
       justify
@@ -22,7 +35,7 @@ const NavBar = () => {
         </NavLink>
       </Nav.Item>
       <Nav.Item>
-        <NavLink to="/signout">
+        <NavLink to="/" onClick={handleSignOut}>
           Signout <i className="fa-solid fa-ghost"></i>
         </NavLink>
       </Nav.Item>
