@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import styles from "../styles/SignInUpForm.module.css";
-// import appStyles from "../App.module.css";
 
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import axios from "axios";

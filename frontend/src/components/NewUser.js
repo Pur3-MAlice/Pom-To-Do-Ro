@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import styles from "../styles/SignInUpForm.module.css";
 import appStyles from "../App.module.css";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
 
 const NewUser = () => {
-    const [showSignInForm, setShowSignInForm] = useState(true);
+  const [showSignInForm, setShowSignInForm] = useState(true);
 
-    const handleButtonClick = () => {
-        // Toggle between SignInForm and SignUpForm
-        setShowSignInForm(!showSignInForm); 
-    }
-    
+  const handleButtonClick = () => {
+    setShowSignInForm(!showSignInForm);
+  };
+
   return (
     <>
       <Row className={`justify-content-md-center ${styles.Row}`}>
@@ -29,25 +27,18 @@ const NewUser = () => {
       </Row>
       <Row className={`justify-content-md-center ${styles.Row}`}>
         <Col className="my-auto p-md-2" md={6}>
-        {showSignInForm ? <SignInForm /> : <SignUpForm />}
-        
-          
-        <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to={<SignUpForm />}>
-            Don't have an account? <span>Sign up</span>
-          </Link>
-          <Link className={styles.Link} to={<SignInForm/>}>
-            Already have an account? <span>Sign in</span>
-          </Link>
-          <div>
-            <button onClick={handleButtonClick}>Toggle Component</button>
-            
-            </div>
-        </Container>
+          {showSignInForm ? <SignInForm /> : <SignUpForm />}
+
+          <Container className={`mt-3 ${appStyles.Content}`}>
+            <Link to= "/" onClick={handleButtonClick} className={styles.Link}>
+              {showSignInForm
+                ? "Don't have an account? "
+                : "Already have an account? "}
+              <span>{showSignInForm ? "Sign up" : "Sign in"}</span>
+            </Link>
+          </Container>
         </Col>
       </Row>
-
-
     </>
   );
 };
