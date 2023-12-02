@@ -1,38 +1,28 @@
 import styles from '../styles/BasePage.module.css';
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import NavBar from './NavBar';
-import { Route, Switch } from 'react-router-dom';
+import TaskManager from './TaskManager';
+import PomodoroTimer from './PomodoroTimer';
+import HabitsTracker from './HabitsTracker';
 
 const BasePage = () => {
   return (
     <>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={5} style={{ height: '415px', border: '1px solid black', padding: '0' }}>
-          Content for Div 1
-          <Container>
-            <Switch>
-              <Route exact path="/signout" render={() => <p>Signout</p>} />
-              <Route exact path="/profile" render={() => <p>Profile</p>} />  
-            </Switch>
-          </Container>
+        <Col sm={12} md={4} style={{ height: '415px', border: '1px solid black', padding: '0' }}>
+          <PomodoroTimer />
         </Col>
-        <Col sm={12} md={7} style={{ height: '615px', border: '1px solid black', padding: '0' }}>
-          Content for Div 2
+        <Col sm={12} md={8} style={{ height: '635px', border: '1px solid black', padding: '0' }}>
+          <TaskManager />
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={5} className={styles.HabitBox}>
-          Content for Div 3
+        <Col sm={12} md={4} className={styles.HabitBox}>
+          <HabitsTracker />
         </Col>
-        <Col sm={12} md={7}  className={styles.NavBox}>
+        <Col sm={12} md={8}  className={styles.NavBox}>
           <NavBar />
-          <Container>
-            <Switch>
-              <Route exact path="/" render={() => <p>Home</p>} />
-              <Route render={() => <p>Where you going bud? This page has not been found!</p>} />
-              </Switch>
-          </Container>
         </Col>
       </Row>
     </>

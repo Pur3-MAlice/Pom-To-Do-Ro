@@ -21,7 +21,7 @@ const NavBar = () => {
       justify
       defaultActiveKey="/"
       style={{
-        padding: "30px 0 0 0",
+        padding: "25px 0 0 0",
       }}
     >
       <Nav.Item>
