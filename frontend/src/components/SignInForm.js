@@ -29,7 +29,7 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/login/", signInData);
-      history.push("/");
+      window.location.reload();
     } catch (err) {
       setErrors(err.response?.data);
     }
