@@ -1,10 +1,12 @@
-import styles from '../styles/BasePage.module.css';
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import NavBar from './NavBar';
+
 import TaskManager from './TaskManager';
 import PomodoroTimer from './PomodoroTimer';
 import HabitsTracker from './HabitsTracker';
+
+import styles from '../styles/BasePage.module.css';
 
 const BasePage = () => {
   return (
