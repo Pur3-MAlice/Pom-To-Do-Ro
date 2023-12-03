@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
+import { Button, Form, Alert, Modal } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "./../api/axiosDefaults";
@@ -141,9 +139,10 @@ function CreateTask() {
         <Form.File.Label>Regular file input</Form.File.Label>
         <Form.File.Input />
       </Form.File> */}
-
-      <Button onClick={() => history.goBack()}>cancel</Button>
-      <Button type="submit">create</Button>
+      <Modal.Footer>
+        <Button onClick={() => history.goBack()}>cancel</Button>
+        <Button type="submit">create</Button>
+      </Modal.Footer>
     </Form>
   );
 }
