@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button, Form, Alert, Modal } from "react-bootstrap";
 
@@ -17,6 +17,10 @@ function CreateTask() {
 
   const { title, content, duedate, urgent, important, category } = taskData;
 
+  const [categories, setCategories] = useState([]);
+
+  const [loadingCategories, setLoadingCategories] = useState(true);
+
   const [errors, setErrors] = useState({});
 
   const [date, setDate] = useState(new Date());
@@ -29,6 +33,32 @@ function CreateTask() {
       [event.target.name]: event.target.value,
     });
   };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axiosReq.get("/categories/");
+      if (response.data?.results) {
+        console.log("categories got");
+        setCategories(response.data.results.map(category => ({
+          id: category.id,
+          title: category.title, 
+          owner: category.owner,
+        })));
+        console.log(categories);
+        
+      } else {
+        console.error("Invalid response format for categories:", response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    } finally {
+      setLoadingCategories(false); 
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,6 +81,10 @@ function CreateTask() {
       }
     }
   };
+
+  if (loadingCategories) {
+    return <p>Loading categories...</p>;
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -121,13 +155,15 @@ function CreateTask() {
         id="inlineFormCustomSelect"
         custom
         name="category"
-        value={category}
+        value={taskData.category}
         onChange={handleChange}
       >
-        <option value="0">Category...</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="">Category...</option>
+        {categories.map((category) => (
+          <option value={category.title}>
+            {category.title}
+          </option>
+        ))}
       </Form.Control>
       {errors?.category?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
