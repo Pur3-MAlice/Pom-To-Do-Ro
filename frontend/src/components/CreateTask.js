@@ -2,19 +2,13 @@ import React, { useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import DatePicker from 'react-date-picker'
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
+import Alert from "react-bootstrap/Alert";
 
-
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "./../api/axiosDefaults";
 
 function CreateTask() {
-  const [errors, setErrors] = useState({});
-
-  const [postData, setPostData] = useState({
+  const [taskData, setTaskData] = useState({
     title: "",
     content: "",
     duedate: "",
@@ -22,19 +16,46 @@ function CreateTask() {
     important: "",
     category: "",
   });
-  const { title, content } = postData;
+
+  const { title, content, duedate, urgent, important, category } = taskData;
+
+  const [errors, setErrors] = useState({});
+
+  const [date, setDate] = useState(new Date());
+
+  const history = useHistory();
 
   const handleChange = (event) => {
-    setPostData({
-      ...postData,
+    setTaskData({
+      ...taskData,
       [event.target.name]: event.target.value,
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
 
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("duedate", duedate);
+    formData.append("urgent", urgent);
+    formData.append("important", important);
+    formData.append("category", category);
 
-  const textFields = (
-    <div className="text-center">
+    try {
+      const { data } = await axiosReq.post("/tasks/", formData);
+      history.push(`/tasks/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
+
+  return (
+    <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -44,6 +65,11 @@ function CreateTask() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>Content</Form.Label>
         <Form.Control
@@ -54,125 +80,71 @@ function CreateTask() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.content?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
-      <Form.Check 
-        type='checkbox'
-        id='default-checkbox'
-        label='default-checkbox'
+      <Form.Check
+        type="checkbox"
+        id="important"
+        label="Important"
         name="important"
+        value={important}
+        onChange={handleChange}
       />
 
-    <Form.Check 
-        type='checkbox'
-        id='default-checkbox'
-        label='default-checkbox'
+      <Form.Check
+        type="checkbox"
+        id="urgent"
+        label="Urgent"
         name="urgent"
+        value={urgent}
+        onChange={handleChange}
       />
 
-<DatePicker onChange={handleChange} />
+      <Form.Control
+        type="date"
+        name="datepick"
+        placeholder="DateRange"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
+      {errors?.datepick?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
-      <Form.Group>
-        <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="content"
-          value={content}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="content"
-          value={content}
-          onChange={handleChange}
-        />
-      </Form.Group>
-
-      <Button
-        
-        onClick={() => {}}
+      <Form.Control
+        as="select"
+        className="mr-sm-2"
+        id="inlineFormCustomSelect"
+        custom
+        name="category"
+        value={category}
+        onChange={handleChange}
       >
-        cancel
-      </Button>
-      <Button  type="submit">
-        create
-      </Button>
-    </div>
-  );
+        <option value="0">Category...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </Form.Control>
+      {errors?.category?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
-  return (
-    <div className="text-center">
-    <Form.Group>
-      <Form.Label>Title</Form.Label>
-      <Form.Control
-        type="text"
-        name="title"
-        value={title}
-        onChange={handleChange}
-      />
-    </Form.Group>
-    <Form.Group>
-      <Form.Label>Content</Form.Label>
-      <Form.Control
-        as="textarea"
-        rows={6}
-        name="content"
-        value={content}
-        onChange={handleChange}
-      />
-    </Form.Group>
+      {/* <Form.File id="formcheck-api-regular">
+        <Form.File.Label>Regular file input</Form.File.Label>
+        <Form.File.Input />
+      </Form.File> */}
 
-    <Form.Check 
-      type='checkbox'
-      id='default-checkbox'
-      label='default-checkbox'
-      name="important"
-    />
-
-  <Form.Check 
-      type='checkbox'
-      id='default-checkbox'
-      label='default-checkbox'
-      name="urgent"
-    />
-
-<DatePicker onChange={handleChange}  />
-
-    <Form.Group>
-      <Form.Label>Content</Form.Label>
-      <Form.Control
-        as="textarea"
-        rows={6}
-        name="content"
-        value={content}
-        onChange={handleChange}
-      />
-    </Form.Group>
-    <Form.Group>
-      <Form.Label>Content</Form.Label>
-      <Form.Control
-        as="textarea"
-        rows={6}
-        name="content"
-        value={content}
-        onChange={handleChange}
-      />
-    </Form.Group>
-
-    <Button
-      
-      onClick={() => {}}
-    >
-      cancel
-    </Button>
-    <Button  type="submit">
-      create
-    </Button>
-  </div>
+      <Button onClick={() => history.goBack()}>cancel</Button>
+      <Button type="submit">create</Button>
+    </Form>
   );
 }
 

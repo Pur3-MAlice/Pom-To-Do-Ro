@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 import CreateTask from './CreateTask';
 
 import styles from '../styles/TaskManager.module.css';
@@ -14,7 +14,7 @@ const TaskManager = () => {
     <div className={`${appStyles.Title} ${styles.Title}`}>
       <h3>My Tasks:</h3>
     </div>
-    <Form>
+
         <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} type="submit">
           Add Task
         </Button>
@@ -31,12 +31,12 @@ const TaskManager = () => {
           <Container className={appStyles.Content}>POOP</Container>
         </Col>
       </Row>
-      <Row className={`justify-content-md-center ${styles.Row}`}>
+
+    <Row className={`justify-content-md-center ${styles.Row}`}>
         <Col md={5} lg={7}>
           <CreateTask/>
         </Col>
       </Row>
-    </Form>
     </>
   );
 }
