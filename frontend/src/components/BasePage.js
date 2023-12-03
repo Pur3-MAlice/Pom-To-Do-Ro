@@ -1,7 +1,7 @@
 import styles from '../styles/BasePage.module.css';
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-// import NavBar from './NavBar';
+import NavBar from './NavBar';
 import TaskManager from './TaskManager';
 import PomodoroTimer from './PomodoroTimer';
 import HabitsTracker from './HabitsTracker';
@@ -21,9 +21,9 @@ const BasePage = () => {
         <Col sm={12} md={4} className={styles.HabitBox}>
           <HabitsTracker />
         </Col>
-        {/* <Col sm={12} md={8}  className={styles.NavBox}>
+        <Col sm={12} md={8}  className={styles.NavBox}>
           <NavBar />
-        </Col> */}
+        </Col>
       </Row>
     </>
   );

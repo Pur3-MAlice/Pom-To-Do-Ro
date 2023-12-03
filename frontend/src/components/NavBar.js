@@ -1,7 +1,8 @@
 import { Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom/";
+import { NavLink, } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import axios from "axios";
+// import Profile from "./Profile";
 
 
 const NavBar = () => {
@@ -17,6 +18,7 @@ const NavBar = () => {
     }
   };
   return (
+    <>
     <Nav
       justify
       defaultActiveKey="/"
@@ -30,7 +32,8 @@ const NavBar = () => {
         </NavLink>
       </Nav.Item>
       <Nav.Item>
-        <NavLink to="/profile">
+      <NavLink
+        to={`/profiles/${currentUser?.profile_id}`}>
          {currentUser?.username}'s Profile<i className="fa-solid fa-user-astronaut"></i>
         </NavLink>
       </Nav.Item>
@@ -40,6 +43,7 @@ const NavBar = () => {
         </NavLink>
       </Nav.Item>
     </Nav>
+    </>
   );
 };
 
