@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-import styles from "../styles/SignInUpForm.module.css";
-import appStyles from "../App.module.css"
+import styles from "../../styles/SignInUpForm.module.css";
+
 
 import { Form, Button, Container, Alert, Row, Col } from "react-bootstrap";
 import axios from "axios";
@@ -117,7 +117,7 @@ const SignUpForm = () => {
               ))}
             </Form>
           </Container>
-          <Container className={`mt-3 ${appStyles.Content}`}>
+          <Container className={`mt-3 ${styles.Content}`}>
             <Link to= "/" className={styles.Link}>
               Already have an account? <span>Sign in</span>
             </Link>

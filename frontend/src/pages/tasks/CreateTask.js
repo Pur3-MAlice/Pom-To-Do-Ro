@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button, Form, Alert, Modal } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
-import { axiosReq } from "./../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function CreateTask() {
   const [taskData, setTaskData] = useState({

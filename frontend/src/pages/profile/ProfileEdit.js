@@ -3,8 +3,8 @@ import { useHistory, useParams } from "react-router-dom";
 
 import { Button, Form, Alert, Row, Col, Container } from "react-bootstrap";
 
-import { axiosReq } from "./../api/axiosDefaults";
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 const ProfileEdit = () => {

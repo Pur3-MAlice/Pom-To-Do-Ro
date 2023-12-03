@@ -133,3 +133,10 @@
   background-color: #2ed9ff;
   color: #2142b2;
 }
+
+.Content {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #dadadf;
+}

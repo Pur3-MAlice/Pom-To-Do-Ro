@@ -1,12 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-import NavBar from './NavBar';
+import NavBar from '../../components/NavBar';
 
-import styles from '../styles/BasePage.module.css';
+import styles from '../../styles/BasePage.module.css';
 import ProfileEdit from './ProfileEdit';
-import CreateCategory from './CreateCategory';
-import TaskManager from './TaskManager';
+import CreateCategory from '../categories/CreateCategory';
+
 
 const Profile = () => {
   return (
@@ -17,7 +17,7 @@ const Profile = () => {
             <CreateCategory/>
         </Col>
         <Col sm={12} md={8} style={{ height: "635px", border: "1px solid black", padding: "0" }}>
-            <TaskManager />
+
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>

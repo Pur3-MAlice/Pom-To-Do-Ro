@@ -4,10 +4,10 @@ import { createContext } from "react";
 
 import styles from "./App.module.css";
 
-import SignUpForm from "./components/SignUpForm";
-import SignInForm from "./components/SignInForm";
+import SignUpForm from "./pages/auth/SignUpForm";
+import SignInForm from "./pages/auth/SignInForm";
 import BasePage from "./components/BasePage";
-import Profile from "./components/Profile";
+import Profile from "./pages/profile/Profile";
 import ErrorPage from "./components/ErrorPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Alert, Row, Col, Container } from "react-bootstrap";
-import { axiosReq } from "./../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 
 const CreateCategory = () => {
   const [categoryData, setCategoryData] = useState({

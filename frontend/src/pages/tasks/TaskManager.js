@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Button, Container, Row, Col, Modal } from "react-bootstrap";
 import CreateTask from './CreateTask';
 
-import styles from '../styles/TaskManager.module.css';
-import appStyles from "../App.module.css"
+import styles from '../../styles/TaskManager.module.css';
+import appStyles from "../../../src/App.module.css"
 
 const TaskManager = () => {
   const [show, setShow] = useState(false);

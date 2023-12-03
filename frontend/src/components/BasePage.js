@@ -2,9 +2,9 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import NavBar from './NavBar';
 
-import TaskManager from './TaskManager';
-import PomodoroTimer from './PomodoroTimer';
-import HabitsTracker from './HabitsTracker';
+import TaskManager from '../pages/tasks/TaskManager';
+import PomodoroTimer from '../pages/timer/PomodoroTimer';
+import HabitsTracker from '../pages/habits/HabitsTracker';
 
 import styles from '../styles/BasePage.module.css';
 
