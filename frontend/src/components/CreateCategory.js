@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-
-import { Button, Form, Alert } from "react-bootstrap";
-
-import { useHistory } from "react-router-dom";
+import { Button, Form, Alert, Row, Col, Container } from "react-bootstrap";
 import { axiosReq } from "./../api/axiosDefaults";
 
 const CreateCategory = () => {
@@ -15,7 +12,14 @@ const CreateCategory = () => {
 
   const [errors, setErrors] = useState({});
 
-  const history = useHistory();
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const clearForm = () => {
+    setCategoryData({
+      title: "",
+      content: ""
+    });
+  };
 
   const handleChange = (event) => {
     setCategoryData({
@@ -33,6 +37,8 @@ const CreateCategory = () => {
 
     try {
       await axiosReq.post("/categories/", formData);
+      clearForm();
+      setSuccessMessage("Category created successfully!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -41,8 +47,12 @@ const CreateCategory = () => {
     }
   };
 
-  return (
-    <Form onSubmit={handleSubmit}>
+  const handleCancel = () => {
+    clearForm();
+  };
+
+  const textFields = ( 
+    <>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -72,10 +82,25 @@ const CreateCategory = () => {
           {message}
         </Alert>
       ))}
-        <Button onClick={() => history.goBack()}>cancel</Button>
+        <Button onClick={handleCancel}>cancel</Button>
         <Button type="submit">create</Button>
+  </>
+);
+
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      {successMessage && (
+        <Alert variant="success" onClose={() => setSuccessMessage("")} dismissible>
+          {successMessage}
+        </Alert>
+      )}
+      <Row>
+        <Col>
+          <Container>{textFields}</Container>
+        </Col>
+      </Row>
     </Form>
   );
 };
-
 export default CreateCategory;
