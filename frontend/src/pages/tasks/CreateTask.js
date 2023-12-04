@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from "react";
 
 import { Button, Form, Alert, Modal } from "react-bootstrap";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+
 function CreateTask() {
+  const currentUser = useCurrentUser();
+
   const [taskData, setTaskData] = useState({
     title: "",
     content: "",
-    duedate: "",
-    urgent: "",
-    important: "",
-    category: "",
+    due: "",
+    urgent: false,
+    important: false,
+    category: ""
   });
 
-  const { title, content, duedate, urgent, important, category } = taskData;
+  const { title, content, due, urgent, important, category } = taskData;
+
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const [categories, setCategories] = useState([]);
 
@@ -23,14 +31,39 @@ function CreateTask() {
 
   const [errors, setErrors] = useState({});
 
-  const [date, setDate] = useState(new Date());
-
   const history = useHistory();
 
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const clearForm = () => {
+    setTaskData({
+      title: "",
+      content: "",
+      due: "",
+    });
+  };
+
   const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+  
+    if (type === "checkbox") {
+      setTaskData((prevData) => ({
+        ...prevData,
+        [name]: checked,
+      }));
+    } else {
+      setTaskData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleDate = (date) => {
+    setSelectedDate(date);
     setTaskData({
       ...taskData,
-      [event.target.name]: event.target.value,
+      due: date.toISOString(),
     });
   };
 
@@ -38,14 +71,14 @@ function CreateTask() {
     try {
       const response = await axiosReq.get("/categories/");
       if (response.data?.results) {
-        console.log("categories got");
         setCategories(response.data.results.map(category => ({
           id: category.id,
           title: category.title, 
           owner: category.owner,
+          is_owner: category.is_owner,
         })));
         console.log(categories);
-        
+        console.log(currentUser?.username);
       } else {
         console.error("Invalid response format for categories:", response.data);
       }
@@ -66,14 +99,15 @@ function CreateTask() {
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("duedate", duedate);
+    formData.append("due", due);
     formData.append("urgent", urgent);
     formData.append("important", important);
     formData.append("category", category);
 
     try {
-      const { data } = await axiosReq.post("/tasks/", formData);
-      history.push(`/tasks/${data.id}`);
+      await axiosReq.post("/tasks/", formData);
+      clearForm();
+      setSuccessMessage("Task created!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -88,6 +122,11 @@ function CreateTask() {
 
   return (
     <Form onSubmit={handleSubmit}>
+      {successMessage && (
+        <Alert variant="success" onClose={() => setSuccessMessage("")} dismissible>
+          {successMessage}
+        </Alert>
+      )}
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -123,7 +162,7 @@ function CreateTask() {
         id="important"
         label="Important"
         name="important"
-        value={important}
+        checked={important}
         onChange={handleChange}
       />
 
@@ -132,35 +171,39 @@ function CreateTask() {
         id="urgent"
         label="Urgent"
         name="urgent"
-        value={urgent}
+        checked={urgent}
         onChange={handleChange}
       />
 
-      <Form.Control
-        type="date"
-        name="datepick"
-        placeholder="DateRange"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
+      <Form.Group>
+        <Form.Label>Due</Form.Label>
+      <DatePicker
+        selected={selectedDate}
+        onChange={handleDate}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        dateFormat="MMMM d, yyyy h:mm aa"
+        timeCaption="Time"
       />
-      {errors?.datepick?.map((message, idx) => (
+      </Form.Group>
+      {errors?.due?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
+
       ))}
 
       <Form.Control
         as="select"
-        className="mr-sm-2"
-        id="inlineFormCustomSelect"
         custom
         name="category"
-        value={taskData.category}
-        onChange={handleChange}
+        value={category}
+        onChange={(event) => setTaskData({ ...taskData, category: event.target.value })}
       >
         <option value="">Category...</option>
         {categories.map((category) => (
-          <option value={category.title}>
+          <option value={category.id} key={category.id}>
             {category.title}
           </option>
         ))}
@@ -171,10 +214,6 @@ function CreateTask() {
         </Alert>
       ))}
 
-      {/* <Form.File id="formcheck-api-regular">
-        <Form.File.Label>Regular file input</Form.File.Label>
-        <Form.File.Input />
-      </Form.File> */}
       <Modal.Footer>
         <Button onClick={() => history.goBack()}>cancel</Button>
         <Button type="submit">create</Button>
