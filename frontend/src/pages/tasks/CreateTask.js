@@ -163,7 +163,7 @@ function CreateTask() {
         label="Important"
         name="important"
         checked={important}
-        onChange={handleChange}
+        onChange={(event) => setTaskData({ ...taskData, important: event.target.checked })}
       />
 
       <Form.Check
@@ -203,7 +203,7 @@ function CreateTask() {
       >
         <option value="">Category...</option>
         {categories.map((category) => (
-          <option value={category.id} key={category.id}>
+          <option value={category.title} key={category.id}>
             {category.title}
           </option>
         ))}
