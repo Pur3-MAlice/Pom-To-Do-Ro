@@ -11,11 +11,11 @@ class CategorySerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
-    due_date = serializers.DateTimeField(allow_null=True, required=False, format="%b %d, %Y %H:%M")
+    due = serializers.DateTimeField(allow_null=True, required=False, format="%b %d, %Y %H:%M")
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     urgent = serializers.BooleanField()
     important = serializers.BooleanField()
-    category = CategorySerializer()
+    category = CategorySerializer(required=False)
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -26,5 +26,5 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'is_owner', 'profile_id',
             'created_at', 'updated_at', 'title', 'content',
-            'due_date','urgent', 'important', 'category',
+            'due','urgent', 'important', 'category',
         ]

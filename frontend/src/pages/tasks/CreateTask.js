@@ -6,8 +6,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-import 'react-datepicker/dist/react-datepicker.css';
-import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 
 function CreateTask() {
   const currentUser = useCurrentUser();
@@ -18,7 +18,7 @@ function CreateTask() {
     due: "",
     urgent: false,
     important: false,
-    category: ""
+
   });
 
   const { title, content, due, urgent, important, category } = taskData;
@@ -45,7 +45,7 @@ function CreateTask() {
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-  
+
     if (type === "checkbox") {
       setTaskData((prevData) => ({
         ...prevData,
@@ -71,12 +71,14 @@ function CreateTask() {
     try {
       const response = await axiosReq.get("/categories/");
       if (response.data?.results) {
-        setCategories(response.data.results.map(category => ({
-          id: category.id,
-          title: category.title, 
-          owner: category.owner,
-          is_owner: category.is_owner,
-        })));
+        setCategories(
+          response.data.results.map((category) => ({
+            id: category.id,
+            title: category.title,
+            owner: category.owner,
+            is_owner: category.is_owner,
+          }), console.log(categories))
+        );
         console.log(categories);
         console.log(currentUser?.username);
       } else {
@@ -85,7 +87,7 @@ function CreateTask() {
     } catch (error) {
       console.error("Error fetching categories:", error);
     } finally {
-      setLoadingCategories(false); 
+      setLoadingCategories(false);
     }
   };
 
@@ -123,7 +125,11 @@ function CreateTask() {
   return (
     <Form onSubmit={handleSubmit}>
       {successMessage && (
-        <Alert variant="success" onClose={() => setSuccessMessage("")} dismissible>
+        <Alert
+          variant="success"
+          onClose={() => setSuccessMessage("")}
+          dismissible
+        >
           {successMessage}
         </Alert>
       )}
@@ -163,7 +169,7 @@ function CreateTask() {
         label="Important"
         name="important"
         checked={important}
-        onChange={(event) => setTaskData({ ...taskData, important: event.target.checked })}
+        onChange={handleChange}
       />
 
       <Form.Check
@@ -176,44 +182,47 @@ function CreateTask() {
       />
 
       <Form.Group>
-        <Form.Label>Due</Form.Label>
-      <DatePicker
-        selected={selectedDate}
-        onChange={handleDate}
-        showTimeSelect
-        timeFormat="HH:mm"
-        timeIntervals={15}
-        dateFormat="MMMM d, yyyy h:mm aa"
-        timeCaption="Time"
-      />
+        <Form.Label>due</Form.Label>
+        <DatePicker
+          selected={selectedDate}
+          onChange={handleDate}
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          dateFormat="MMMM d, yyyy h:mm aa"
+          timeCaption="Time"
+        />
       </Form.Group>
       {errors?.due?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
-
       ))}
-
-      <Form.Control
-        as="select"
-        custom
-        name="category"
-        value={category}
-        onChange={(event) => setTaskData({ ...taskData, category: event.target.value })}
-      >
-        <option value="">Category...</option>
-        {categories.map((category) => (
-          <option value={category.title} key={category.id}>
-            {category.title}
-          </option>
-        ))}
-      </Form.Control>
+      <Form.Group>
+        <Form.Label>Category: </Form.Label>
+        <Form.Control
+          as="select"
+          custom
+          name="category"
+          value={category}
+          onChange={(event) =>
+            setTaskData({ ...taskData, category: event.target.value })
+          }
+        >
+          <option value="">Category...</option>
+          {categories.map((category) => (
+            <option value={category.id} key={category.id}>
+              {category.title}
+            </option>
+          ))}
+        </Form.Control>
+      </Form.Group>
       {errors?.category?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
-
+ 
       <Modal.Footer>
         <Button onClick={() => history.goBack()}>cancel</Button>
         <Button type="submit">create</Button>
