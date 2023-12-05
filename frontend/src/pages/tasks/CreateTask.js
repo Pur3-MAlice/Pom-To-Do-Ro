@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { Button, Form, Alert, Modal } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -67,20 +67,22 @@ function CreateTask() {
     });
   };
 
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const response = await axiosReq.get("/categories/");
       if (response.data?.results) {
+        const userCategories = response.data.results.filter((category) => (
+          category.owner === currentUser?.username && category.is_owner
+        ));
+  
         setCategories(
-          response.data.results.map((category) => ({
+          userCategories.map((category) => ({
             id: category.id,
             title: category.title,
             owner: category.owner,
             is_owner: category.is_owner,
-          }), console.log(categories))
+          }))
         );
-        console.log(categories);
-        console.log(currentUser?.username);
       } else {
         console.error("Invalid response format for categories:", response.data);
       }
@@ -89,15 +91,16 @@ function CreateTask() {
     } finally {
       setLoadingCategories(false);
     }
-  };
+  }, [currentUser?.username]);
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [fetchCategories]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    console.log(currentUser?.username);
 
     formData.append("title", title);
     formData.append("content", content);
