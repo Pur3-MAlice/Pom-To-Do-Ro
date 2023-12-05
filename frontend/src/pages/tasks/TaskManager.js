@@ -25,7 +25,7 @@ const TaskManager = () => {
       </Button>
 
       <Row className={`justify-content-md-center ${styles.Row}`}>
-        <Col md={5} lg={7}>
+        <Col md={7} lg={8}>
           <Container className={appStyles.Content}>
             <TaskList />
           </Container>
