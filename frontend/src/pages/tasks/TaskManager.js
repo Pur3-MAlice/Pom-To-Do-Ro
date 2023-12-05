@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Container, Row, Col, Modal } from "react-bootstrap";
 import CreateTask from './CreateTask';
+import TaskList from './TaskList';
 
 import styles from '../../styles/TaskManager.module.css';
 import appStyles from "../../../src/App.module.css"
@@ -25,15 +26,12 @@ const TaskManager = () => {
 
       <Row className={`justify-content-md-center ${styles.Row}`}>
         <Col md={5} lg={7}>
-          <Container className={appStyles.Content}>POOP</Container>
+          <Container className={appStyles.Content}>
+            <TaskList />
+          </Container>
         </Col>
       </Row>
 
-      <Row className={`justify-content-md-center ${styles.Row}`}>
-        <Col md={5} lg={7}>
-          <Container className={appStyles.Content}>POOP</Container>
-        </Col>
-      </Row>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

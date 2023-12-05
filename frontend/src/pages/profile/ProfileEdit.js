@@ -29,10 +29,9 @@ const ProfileEdit = () => {
           setProfileData({ name, content });
         } catch (err) {
           console.log(err);
-          history.push("/");
         }
       } else {
-        history.push("/");
+        
       }
     };
 

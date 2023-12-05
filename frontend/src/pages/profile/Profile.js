@@ -14,10 +14,11 @@ const Profile = () => {
     <>
       <Row noGutters className={styles.BasePage}>
         <Col sm={12} md={4} style={{ height: "415px", border: "1px solid black", padding: "0" }}>
-            <ProfileEdit />
-            <CreateCategory/>
+            Edit Profile Name: <ProfileEdit />
         </Col>
         <Col sm={12} md={8} style={{ height: "635px", border: "1px solid black", padding: "0" }}>
+          Create A new Category:
+          <CreateCategory/>
           <Category />
         </Col>
       </Row>
