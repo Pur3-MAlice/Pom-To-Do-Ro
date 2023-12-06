@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useCallback, useState, useEffect } from "react";
+import { Button, Card, Media } from "react-bootstrap";
 import styles from "../../styles/TaskList.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media } from "react-bootstrap";
-import { useCallback, useState, useEffect } from "react";
-import { axiosReq } from "../../api/axiosDefaults";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 
 const Task = (props) => {
   const {
+    id,
     owner,
     title,
     content,
@@ -21,6 +22,8 @@ const Task = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
+  const history = useHistory();
+
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
 
@@ -31,7 +34,6 @@ const Task = (props) => {
         const userCategories = response.data.results.filter((category) => (
           category.owner === currentUser?.username && category.is_owner
         ));
-
         setCategories(
           userCategories.map((category) => ({
             id: category.id,
@@ -54,9 +56,30 @@ const Task = (props) => {
   }, [fetchCategories]);
 
   const getCategoryTitle = () => {
-    const foundCategory = categories.find((c) => c.id === category);
+    const foundCategory = categories.find((cat) => cat.id === category);
     return foundCategory ? foundCategory.title : "Uncategorized";
   };
+
+  const handleEdit = () => {
+    history.push(`/tasks/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/tasks/${id}/`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Render the card only if is_owner is true
+  if (!is_owner) {
+    return null;
+  }
+
+  if (loadingCategories) {
+    return <p>Loading categories...</p>;
+  }
 
   return (
     <Card>
@@ -76,6 +99,9 @@ const Task = (props) => {
         {due && <Card.Text>{due}</Card.Text>}
         {category && <Card.Text>Category: {getCategoryTitle()}</Card.Text>}
       </Card.Body>
+      <Button onClick={handleDelete}>Delete</Button>
+      <div></div>
+      <Button onClick={handleEdit}>Edit</Button>
     </Card>
   );
 };

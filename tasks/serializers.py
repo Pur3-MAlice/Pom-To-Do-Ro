@@ -15,7 +15,7 @@ class TaskSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     urgent = serializers.BooleanField()
     important = serializers.BooleanField()
-    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), required=False)
 
     def get_is_owner(self, obj):
         request = self.context['request']

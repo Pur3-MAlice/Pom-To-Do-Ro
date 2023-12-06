@@ -8,7 +8,6 @@ import appStyles from "../../App.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-
 function TasksPage({ message, filter = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -31,24 +30,24 @@ function TasksPage({ message, filter = "" }) {
 
   return (
     <>
-        {hasLoaded ? (
-          <>
-            {tasks.results.length ? (
-              tasks.results.map((task) => (
-                <Task key={task.id} {...task} setTasks={setTasks} />
-              ))
-            ) : (
-              <Container className={appStyles.Content}>
-                <h1>Sad nothing here </h1>
-              </Container>
-            )}
-          </>
-        ) : (
-          <Container className={appStyles.Content}>
-            <h1>Loading</h1>
-          </Container>
-        )}
-</>
+      {hasLoaded ? (
+        <>
+          {tasks.results.length ? (
+            tasks.results.map((task) => (
+              <Task key={task.id} {...task} setTasks={setTasks} />
+            ))
+          ) : (
+            <Container className={appStyles.Content}>
+              <h1>Sad nothing here </h1>
+            </Container>
+          )}
+        </>
+      ) : (
+        <Container className={appStyles.Content}>
+          <h1>Loading</h1>
+        </Container>
+      )}
+    </>
   );
 }
 

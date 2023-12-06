@@ -1,23 +1,26 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 
-import { Button, Form, Alert, Modal } from "react-bootstrap";
+import { Button, Form, Alert, Modal, Row, Col, Container } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import { useHistory } from "react-router-dom";
+import appStyles from "../../App.module.css";
+
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 
-function CreateTask() {
+const TaskEditForm = () => {
   const currentUser = useCurrentUser();
+  const [errors, setErrors] = useState({});
 
   const [taskData, setTaskData] = useState({
     title: "",
     content: "",
     due: "",
-    urgent: false,
-    important: false,
+    urgent: "",
+    important: "",
     category: "",
   });
 
@@ -25,39 +28,14 @@ function CreateTask() {
 
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const [categories, setCategories] = useState([]);
-
-  const [loadingCategories, setLoadingCategories] = useState(true);
-
-  const [errors, setErrors] = useState({});
-
   const history = useHistory();
+  const { id } = useParams();
 
   const [successMessage, setSuccessMessage] = useState("");
 
-  const clearForm = () => {
-    setTaskData({
-      title: "",
-      content: "",
-      due: "",
-    });
-  };
+  const [categories, setCategories] = useState([]);
 
-  const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-
-    if (type === "checkbox") {
-      setTaskData((prevData) => ({
-        ...prevData,
-        [name]: checked,
-      }));
-    } else {
-      setTaskData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
-  };
+  const [loadingCategories, setLoadingCategories] = useState(true);
 
   const handleDate = (date) => {
     setSelectedDate(date);
@@ -71,18 +49,16 @@ function CreateTask() {
     try {
       const response = await axiosReq.get("/categories/");
       if (response.data?.results) {
-        const userCategories = response.data.results.filter((category) => (
-          category.owner === currentUser?.username && category.is_owner
-        ));
   
         setCategories(
-          userCategories.map((category) => ({
+            response.data.results.map((category) => ({
             id: category.id,
             title: category.title,
             owner: category.owner,
             is_owner: category.is_owner,
           }))
         );
+        console.log("categories got", setCategories)
       } else {
         console.error("Invalid response format for categories:", response.data);
       }
@@ -91,15 +67,53 @@ function CreateTask() {
     } finally {
       setLoadingCategories(false);
     }
-  }, [currentUser?.username]);
+  }, []);
 
   useEffect(() => {
     fetchCategories();
   }, [fetchCategories]);
 
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/tasks/${id}/`);
+        const { title, content, due, urgent, important, category } = data;
+  
+        // Parse the due date if available
+        const parsedDue = due ? new Date(due) : null;
+  
+        setTaskData({
+          title,
+          content,
+          due: parsedDue,
+          urgent,
+          important,
+          category: category ? category.id : null,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+    handleMount();
+  }, [id]);
+
+  const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+  
+    const updatedValue = type === 'checkbox' ? checked : value;
+  
+    setTaskData({
+      ...taskData,
+      [name]: updatedValue,
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+
     console.log(currentUser?.username);
 
     formData.append("title", title);
@@ -110,9 +124,9 @@ function CreateTask() {
     formData.append("category", category);
 
     try {
-      await axiosReq.post("/tasks/", formData);
-      clearForm();
-      setSuccessMessage("Task created!");
+      await axiosReq.put(`/tasks/${id}/`, formData);
+      history.push(`/tasks/${id}`);
+      setSuccessMessage("Task edited!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -120,22 +134,11 @@ function CreateTask() {
       }
     }
   };
-
   if (loadingCategories) {
     return <p>Loading categories...</p>;
   }
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      {successMessage && (
-        <Alert
-          variant="success"
-          onClose={() => setSuccessMessage("")}
-          dismissible
-        >
-          {successMessage}
-        </Alert>
-      )}
+  const textFields = (
+    <div className="text-center">
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -225,13 +228,31 @@ function CreateTask() {
           {message}
         </Alert>
       ))}
- 
-      <Modal.Footer>
+            <Modal.Footer>
         <Button onClick={() => history.goBack()}>cancel</Button>
         <Button type="submit">create</Button>
       </Modal.Footer>
+    </div>
+  );
+
+  return (
+    <Form onSubmit={handleSubmit}>
+        {successMessage && (
+        <Alert
+          variant="success"
+          onClose={() => setSuccessMessage("")}
+          dismissible
+        >
+          {successMessage}
+        </Alert>
+      )}
+      <Row>
+        <Col>
+          <Container className={appStyles.Content}>{textFields}</Container>
+        </Col>
+      </Row>
     </Form>
   );
-}
+};
 
-export default CreateTask;
+export default TaskEditForm;
