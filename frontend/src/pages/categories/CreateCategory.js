@@ -71,7 +71,7 @@ const CreateCategory = () => {
         <Form.Label>Content</Form.Label>
         <Form.Control
           as="textarea"
-          rows={3}
+          rows={1}
           name="content"
           value={content}
           onChange={handleChange}

@@ -3,11 +3,12 @@ import { Row, Col, Button } from 'react-bootstrap';
 import NavBar from './NavBar';
 
 import TaskManager from '../pages/tasks/TaskManager';
-import PomodoroTimer from '../pages/timer/PomodoroTimer';
+// import PomodoroTimer from '../pages/timer/PomodoroTimer';
 import HabitsTracker from '../pages/habits/HabitsTracker';
 import CreateTask from '../pages/tasks/CreateTask';
 
 import styles from '../styles/BasePage.module.css';
+import Timer from '../pages/timer/Timer';
 
 const BasePage = () => {
 
@@ -25,7 +26,7 @@ const BasePage = () => {
           md={4}
           style={{ height: "415px", border: "1px solid black", padding: "0" }}
         >
-          <PomodoroTimer />
+          <Timer />
         </Col>
         <Col
           sm={12}
