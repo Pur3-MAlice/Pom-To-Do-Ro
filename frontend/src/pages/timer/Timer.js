@@ -1,4 +1,3 @@
-import Settings from "./Settings";
 import {useState} from "react";
 import SettingsContext from "./SettingsContext";
 import PomodoroTimer from "./PomodoroTimer";
@@ -6,11 +5,12 @@ import PomodoroTimer from "./PomodoroTimer";
 function Timer() {
 
   const [showSettings, setShowSettings] = useState(false);
-  const [workMinutes, setWorkMinutes] = useState(45);
-  const [breakMinutes, setBreakMinutes] = useState(15);
+  const [workMinutes, setWorkMinutes] = useState(25);
+  const [breakMinutes, setBreakMinutes] = useState(5);
+  const [longMinutes, setLongMinutes] = useState(5);
 
   return (
-    <main>
+    <div>
       <SettingsContext.Provider value={{
         showSettings,
         setShowSettings,
@@ -18,10 +18,12 @@ function Timer() {
         breakMinutes,
         setWorkMinutes,
         setBreakMinutes,
+        longMinutes,
+        setLongMinutes
       }}>
-        {showSettings ? <Settings /> : <PomodoroTimer />}
+        <PomodoroTimer />
       </SettingsContext.Provider>
-    </main>
+    </div>
   );
 }
 

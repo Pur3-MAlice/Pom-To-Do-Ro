@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Container } from 'react-bootstrap';
 import NavBar from './NavBar';
 
 import TaskManager from '../pages/tasks/TaskManager';
@@ -24,14 +24,16 @@ const BasePage = () => {
         <Col
           sm={12}
           md={4}
-          style={{ height: "415px", border: "1px solid black", padding: "0" }}
+          style={{ height: "415px", padding: "0" }}
         >
-          <Timer />
+          <Container style={{ width: "200px" }}>
+            <Timer />
+          </Container>
         </Col>
         <Col
           sm={12}
           md={8}
-          style={{ height: "635px", border: "1px solid black", padding: "0" }}
+          style={{ height: "635px", padding: "0" }}
         >
           <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} variant="primary" onClick={handleToggle}>
             Add Task

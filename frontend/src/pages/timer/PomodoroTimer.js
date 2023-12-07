@@ -1,13 +1,11 @@
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import PlayButton from "./PlayButton";
-import PauseButton from "./PauseButton";
-import SettingsButton from "./SettingsButton";
-import {useContext, useState, useEffect, useRef} from "react";
-import SettingsContext from "./SettingsContext";
-
-const red = '#f54e4e';
-const green = '#4aec8c';
+import PlayButton from './PlayButton';
+import PauseButton from './PauseButton';
+import GradientSVG from './GradientSVG'; 
+import SettingsContext from './SettingsContext';
+import Settings from './Settings';
 
 function PomodoroTimer() {
   const settingsInfo = useContext(SettingsContext);
@@ -26,7 +24,6 @@ function PomodoroTimer() {
   }
 
   useEffect(() => {
-
     function switchMode() {
       const nextMode = modeRef.current === 'work' ? 'break' : 'work';
       const nextSeconds = (nextMode === 'work' ? settingsInfo.workMinutes : settingsInfo.breakMinutes) * 60;
@@ -50,7 +47,7 @@ function PomodoroTimer() {
       }
 
       tick();
-    },1000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [settingsInfo]);
@@ -62,27 +59,36 @@ function PomodoroTimer() {
 
   const minutes = Math.floor(secondsLeft / 60);
   let seconds = secondsLeft % 60;
-  if(seconds < 10) seconds = '0'+seconds;
+  if (seconds < 10) seconds = '0' + seconds;
 
   return (
-    <div>
+    <>
+      {/* Gradient for work state */}
+      <GradientSVG startColor="#183593" endColor="#a577d2" idCSS="workGradient" rotation="45" />
+      
+      {/* Gradient for pause state */}
+      <GradientSVG startColor="#FF6B6B" endColor="#FFD166" idCSS="pauseGradient" rotation="-45" />
+
       <CircularProgressbar
         value={percentage}
         text={minutes + ':' + seconds}
         styles={buildStyles({
-        textColor:'#fff',
-        pathColor:mode === 'work' ? red : green,
-        tailColor:'rgba(255,255,255,.2)',
-      })} />
-      <div style={{marginTop:'20px'}}>
+          textColor: '#fff',
+          pathColor: mode === 'work' ? 'url(#workGradient)' : 'url(#pauseGradient)',
+          tailColor: 'rgba(255,255,255,.2)',
+        })}
+      />
+
+
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
         {isPaused
           ? <PlayButton onClick={() => { setIsPaused(false); isPausedRef.current = false; }} />
           : <PauseButton onClick={() => { setIsPaused(true); isPausedRef.current = true; }} />}
       </div>
-      <div style={{marginTop:'20px'}}>
-        <SettingsButton onClick={() => settingsInfo.setShowSettings(true)} />
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <Settings />
       </div>
-    </div>
+    </>
   );
 }
 
