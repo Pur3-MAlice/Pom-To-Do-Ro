@@ -1,15 +1,24 @@
 import React, { useEffect, useCallback, useState } from "react";
 
-import { Button, Form, Alert, Modal, Row, Col, Container } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Alert,
+  Row,
+  Col,
+} from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import appStyles from "../../App.module.css";
+import styles from '../../styles/BasePage.module.css';
 
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import NavBar from "../../components/NavBar";
+import PomodoroTimer from "../timer/PomodoroTimer";
+import HabitsTracker from "../habits/HabitsTracker";
 
 const TaskEditForm = () => {
   const currentUser = useCurrentUser();
@@ -49,16 +58,15 @@ const TaskEditForm = () => {
     try {
       const response = await axiosReq.get("/categories/");
       if (response.data?.results) {
-  
         setCategories(
-            response.data.results.map((category) => ({
+          response.data.results.map((category) => ({
             id: category.id,
             title: category.title,
             owner: category.owner,
             is_owner: category.is_owner,
           }))
         );
-        console.log("categories got", setCategories)
+        console.log("categories got", setCategories);
       } else {
         console.error("Invalid response format for categories:", response.data);
       }
@@ -73,16 +81,14 @@ const TaskEditForm = () => {
     fetchCategories();
   }, [fetchCategories]);
 
-
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/tasks/${id}/`);
         const { title, content, due, urgent, important, category } = data;
-  
-        // Parse the due date if available
+
         const parsedDue = due ? new Date(due) : null;
-  
+
         setTaskData({
           title,
           content,
@@ -95,15 +101,15 @@ const TaskEditForm = () => {
         console.log(err);
       }
     };
-  
+
     handleMount();
   }, [id]);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-  
-    const updatedValue = type === 'checkbox' ? checked : value;
-  
+
+    const updatedValue = type === "checkbox" ? checked : value;
+
     setTaskData({
       ...taskData,
       [name]: updatedValue,
@@ -228,30 +234,54 @@ const TaskEditForm = () => {
           {message}
         </Alert>
       ))}
-            <Modal.Footer>
         <Button onClick={() => history.goBack()}>cancel</Button>
         <Button type="submit">create</Button>
-      </Modal.Footer>
     </div>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-        {successMessage && (
-        <Alert
-          variant="success"
-          onClose={() => setSuccessMessage("")}
-          dismissible
+    <>
+      <Row noGutters className={styles.BasePage}>
+        <Col
+          sm={12}
+          md={4}
+          style={{ height: "415px", border: "1px solid black", padding: "0" }}
         >
-          {successMessage}
-        </Alert>
-      )}
-      <Row>
-        <Col>
-          <Container className={appStyles.Content}>{textFields}</Container>
+          <PomodoroTimer />
+        </Col>
+        <Col
+          sm={12}
+          md={8}
+          style={{ height: "635px", border: "1px solid black", padding: "0" }}
+        >
+          Edit Task {taskData.title}
+          <Form onSubmit={handleSubmit}>
+            {successMessage && (
+              <Alert
+                variant="success"
+                onClose={() => setSuccessMessage("")}
+                dismissible
+              >
+                {successMessage}
+              </Alert>
+            )}
+            <Row>
+              <Col>
+                  {textFields}
+              </Col>
+            </Row>
+          </Form>
         </Col>
       </Row>
-    </Form>
+      <Row noGutters className={styles.BasePage}>
+        <Col sm={12} md={4} className={styles.HabitBox}>
+          <HabitsTracker />
+        </Col>
+        <Col sm={12} md={8} className={styles.NavBox}>
+          <NavBar />
+        </Col>
+      </Row>
+    </>
   );
 };
 

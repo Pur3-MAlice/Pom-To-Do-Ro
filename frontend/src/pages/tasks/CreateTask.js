@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import { Button, Form, Alert, Modal } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import { useHistory } from "react-router-dom";
@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 
 function CreateTask() {
+
   const currentUser = useCurrentUser();
 
   const [taskData, setTaskData] = useState({
@@ -225,11 +226,8 @@ function CreateTask() {
           {message}
         </Alert>
       ))}
- 
-      <Modal.Footer>
         <Button onClick={() => history.goBack()}>cancel</Button>
         <Button type="submit">create</Button>
-      </Modal.Footer>
     </Form>
   );
 }
