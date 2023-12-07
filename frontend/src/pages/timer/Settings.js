@@ -1,44 +1,69 @@
-import ReactSlider from 'react-slider';
-import './slider.css'
+import React, { useContext } from "react";
 import SettingsContext from "./SettingsContext";
-import {useContext} from "react";
-
+import { Row, Col } from "react-bootstrap";
 
 function Settings() {
   const settingsInfo = useContext(SettingsContext);
-  return(
-    <div style={{textAlign:'left'}}>
-      <label>work: {settingsInfo.workMinutes}:00</label>
-      <ReactSlider
-        className={'slider'}
-        thumbClassName={'thumb'}
-        trackClassName={'track'}
-        value={settingsInfo.workMinutes}
-        onChange={newValue => settingsInfo.setWorkMinutes(newValue)}
-        min={1}
-        max={120}
-      />
-      <label>break: {settingsInfo.breakMinutes}:00</label>
-      <ReactSlider
-        className={'slider green'}
-        thumbClassName={'thumb'}
-        trackClassName={'track'}
-        value={settingsInfo.breakMinutes}
-        onChange={newValue => settingsInfo.setBreakMinutes(newValue)}
-        min={1}
-        max={30}
-      />
-      <label>break: {settingsInfo.longMinutes}:00</label>
-      <ReactSlider
-        className={'slider green'}
-        thumbClassName={'thumb'}
-        trackClassName={'track'}
-        value={settingsInfo.longMinutes}
-        onChange={newValue => settingsInfo.setLongMinutes(newValue)}
-        min={1}
-        max={60}
-      />
-    </div>
+
+  const handleInputChange = (e, setterFunction) => {
+    const value = e.target.value;
+    setterFunction(value);
+  };
+
+  const inputStyle = {
+    width: '4em', // Adjust the width to make the input square
+    padding: '.8em', // Adjust padding for spacing
+    borderRadius: '5px', // Add border-radius for rounded corners (optional)
+    border: '1px solid #fff', // Add border for visual separation
+    background: 'transparent', // Set background to transparent
+    color: '#fff', // Set font color to white
+    appearance: 'none', // Hide default arrows
+    overflow: 'hidden', // Hide overflow to prevent clipping
+    fontSize: '1.2em',
+}
+
+
+  return (
+    <>
+    <Row>
+      <Col>
+        <label>
+          <input
+            type="number"
+            value={settingsInfo.workMinutes}
+            onChange={(e) => handleInputChange(e, settingsInfo.setWorkMinutes)}
+            min={1}
+            max={120}
+            style={inputStyle}
+          />
+        </label>
+      </Col>
+      <Col>
+        <label>
+          <input
+            type="number"
+            value={settingsInfo.breakMinutes}
+            onChange={(e) => handleInputChange(e, settingsInfo.setBreakMinutes)}
+            min={1}
+            max={30}
+            style={inputStyle}
+          />
+        </label>
+      </Col>
+      <Col>
+        <label>
+          <input
+            type="number"
+            value={settingsInfo.longMinutes}
+            onChange={(e) => handleInputChange(e, settingsInfo.setLongMinutes)}
+            min={1}
+            max={60}
+            style={inputStyle}
+          />
+        </label>
+      </Col>
+      </Row>
+    </>
   );
 }
 

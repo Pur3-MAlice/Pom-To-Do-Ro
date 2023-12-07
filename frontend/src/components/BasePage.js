@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { Row, Col, Button, Container } from 'react-bootstrap';
-import NavBar from './NavBar';
+import React, { useState } from "react";
+import { Row, Col, Button } from "react-bootstrap";
+import NavBar from "./NavBar";
 
-import TaskManager from '../pages/tasks/TaskManager';
+import TaskManager from "../pages/tasks/TaskManager";
 // import PomodoroTimer from '../pages/timer/PomodoroTimer';
-import HabitsTracker from '../pages/habits/HabitsTracker';
-import CreateTask from '../pages/tasks/CreateTask';
+import HabitsTracker from "../pages/habits/HabitsTracker";
+import CreateTask from "../pages/tasks/CreateTask";
 
-import styles from '../styles/BasePage.module.css';
-import Timer from '../pages/timer/Timer';
+import styles from "../styles/BasePage.module.css";
+import Timer from "../pages/timer/Timer";
 
 const BasePage = () => {
-
   const [createTask, setCreateTask] = useState(false);
 
   const handleToggle = () => {
@@ -21,20 +20,10 @@ const BasePage = () => {
   return (
     <>
       <Row noGutters className={styles.BasePage}>
-        <Col
-          sm={12}
-          md={4}
-          style={{ height: "415px", padding: "0" }}
-        >
-          <Container style={{ width: "200px" }}>
+        <Col sm={12} md={4} style={{ height: "415px", padding: "0" }}>
             <Timer />
-          </Container>
         </Col>
-        <Col
-          sm={12}
-          md={8}
-          style={{ height: "635px", padding: "0" }}
-        >
+        <Col sm={12} md={8} style={{ height: "635px", padding: "0" }}>
           <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} variant="primary" onClick={handleToggle}>
             Add Task
           </Button>

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { Container } from "react-bootstrap";
 import PlayButton from './PlayButton';
 import PauseButton from './PauseButton';
 import GradientSVG from './GradientSVG'; 
@@ -100,7 +101,7 @@ function PomodoroTimer() {
 
       {/* Gradient for long break state */}
       <GradientSVG startColor="#fd1d1d" endColor="#833ab4" idCSS="longGradient" rotation="-45" />
-
+      <Container style={{ width: "60%" }}>
       <CircularProgressbar
         value={percentage}
         text={minutes + ':' + seconds}
@@ -110,7 +111,7 @@ function PomodoroTimer() {
           tailColor: 'rgba(255,255,255,.2)',
         })}
       />
-
+  </Container>
       <div style={{ marginTop: '20px', textAlign: 'center' }}>
         {isPaused
           ? <PlayButton onClick={() => { setIsPaused(false); isPausedRef.current = false; }} />
