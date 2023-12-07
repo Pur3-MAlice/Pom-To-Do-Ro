@@ -7,7 +7,7 @@ function Timer() {
   const [showSettings, setShowSettings] = useState(false);
   const [workMinutes, setWorkMinutes] = useState(25);
   const [breakMinutes, setBreakMinutes] = useState(5);
-  const [longMinutes, setLongMinutes] = useState(5);
+  const [longMinutes, setLongMinutes] = useState(15);
 
   return (
     <div>
@@ -19,7 +19,7 @@ function Timer() {
         setWorkMinutes,
         setBreakMinutes,
         longMinutes,
-        setLongMinutes
+        setLongMinutes,
       }}>
         <PomodoroTimer />
       </SettingsContext.Provider>

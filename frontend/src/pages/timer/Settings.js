@@ -26,7 +26,17 @@ function Settings() {
         value={settingsInfo.breakMinutes}
         onChange={newValue => settingsInfo.setBreakMinutes(newValue)}
         min={1}
-        max={120}
+        max={30}
+      />
+      <label>break: {settingsInfo.longMinutes}:00</label>
+      <ReactSlider
+        className={'slider green'}
+        thumbClassName={'thumb'}
+        trackClassName={'track'}
+        value={settingsInfo.longMinutes}
+        onChange={newValue => settingsInfo.setLongMinutes(newValue)}
+        min={1}
+        max={60}
       />
     </div>
   );

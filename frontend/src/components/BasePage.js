@@ -42,7 +42,7 @@ const BasePage = () => {
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={4} className={styles.HabitBox}>
+        <Col sm={12} md={4}>
           <HabitsTracker />
         </Col>
         <Col sm={12} md={8} className={styles.NavBox}>

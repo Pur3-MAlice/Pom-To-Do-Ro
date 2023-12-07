@@ -13,10 +13,12 @@ function PomodoroTimer() {
   const [isPaused, setIsPaused] = useState(true);
   const [mode, setMode] = useState('work'); // work/break/null
   const [secondsLeft, setSecondsLeft] = useState(0);
+  const [completedWorkSessions, setCompletedWorkSessions] = useState(0)
 
   const secondsLeftRef = useRef(secondsLeft);
   const isPausedRef = useRef(isPaused);
   const modeRef = useRef(mode);
+  const completedWorkSessionsRef = useRef(completedWorkSessions);
 
   function tick() {
     secondsLeftRef.current--;
@@ -25,8 +27,32 @@ function PomodoroTimer() {
 
   useEffect(() => {
     function switchMode() {
-      const nextMode = modeRef.current === 'work' ? 'break' : 'work';
-      const nextSeconds = (nextMode === 'work' ? settingsInfo.workMinutes : settingsInfo.breakMinutes) * 60;
+      if (modeRef.current === "work") {
+        completedWorkSessionsRef.current++;
+        if (completedWorkSessionsRef.current === 2) {
+          // If 4 work sessions are completed, switch to long break
+          setCompletedWorkSessions(0); // Reset the work counter
+          setMode("longBreak");
+          modeRef.current = "longBreak";
+          const nextSeconds = settingsInfo.longMinutes * 60;
+          setSecondsLeft(nextSeconds);
+          secondsLeftRef.current = nextSeconds;
+          return;
+        }
+      } else if (modeRef.current === "break") {
+        setMode("work");
+        modeRef.current = "work";
+        const nextSeconds = settingsInfo.workMinutes * 60;
+        setSecondsLeft(nextSeconds);
+        secondsLeftRef.current = nextSeconds;
+        return;
+      }
+
+      const nextMode = modeRef.current === "work" ? "break" : "work";
+      const nextSeconds =
+        (nextMode === "work"
+          ? settingsInfo.workMinutes
+          : settingsInfo.breakMinutes) * 60;
 
       setMode(nextMode);
       modeRef.current = nextMode;
@@ -50,11 +76,14 @@ function PomodoroTimer() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [settingsInfo]);
+  }, [settingsInfo, settingsInfo.longMinutes, completedWorkSessionsRef]);
 
   const totalSeconds = mode === 'work'
     ? settingsInfo.workMinutes * 60
-    : settingsInfo.breakMinutes * 60;
+    : mode === 'break'
+    ? settingsInfo.breakMinutes * 60
+    : settingsInfo.longMinutes * 60;  
+    
   const percentage = Math.round(secondsLeft / totalSeconds * 100);
 
   const minutes = Math.floor(secondsLeft / 60);
@@ -69,16 +98,18 @@ function PomodoroTimer() {
       {/* Gradient for pause state */}
       <GradientSVG startColor="#FF6B6B" endColor="#FFD166" idCSS="pauseGradient" rotation="-45" />
 
+      {/* Gradient for long break state */}
+      <GradientSVG startColor="#fd1d1d" endColor="#833ab4" idCSS="longGradient" rotation="-45" />
+
       <CircularProgressbar
         value={percentage}
         text={minutes + ':' + seconds}
         styles={buildStyles({
           textColor: '#fff',
-          pathColor: mode === 'work' ? 'url(#workGradient)' : 'url(#pauseGradient)',
+          pathColor: mode === 'work' ? 'url(#workGradient)' : mode === 'break' ? 'url(#pauseGradient)' : 'url(#longGradient)',
           tailColor: 'rgba(255,255,255,.2)',
         })}
       />
-
 
       <div style={{ marginTop: '20px', textAlign: 'center' }}>
         {isPaused
