@@ -1,0 +1,27 @@
+.inputStyle {
+    width: 4em;
+    padding: .8em;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    overflow: hidden;
+    font-size: 1.2em;
+}
+
+.PlayPauseButton {
+    background-color: #a577d2;
+    border: none;
+    width: 4em;
+    height: 4em;
+    border-radius: 5px;
+}
+
+.PlayPauseButton:hover {
+    background-color: #6d33a7;
+    border: none;
+}
+
+.PlayPauseButton i {
+    color: #ffc0cb;
+}

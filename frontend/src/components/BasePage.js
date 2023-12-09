@@ -19,10 +19,10 @@ const BasePage = () => {
   return (
     <>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={4} style={{ height: "70vh", padding: "0", border: '1px solid red'}}>
+        <Col sm={12} md={4} style={{ height: "65vh", padding: "0"}}>
             <Timer />
         </Col>
-        <Col sm={12} md={8} style={{ height: "90vh", padding: "0", border: '1px solid red' }}>
+        <Col sm={12} md={8} style={{ height: "90vh", padding: "0"}}>
           <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} variant="primary" onClick={handleToggle}>
             Add Task
           </Button>
@@ -30,10 +30,10 @@ const BasePage = () => {
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={4} className={styles.HabitBox} style={{ height: "30vh", padding: "0", border: '1px solid red' }}>
+        <Col sm={12} md={4} className={styles.HabitBox} style={{ height: "35vh", padding: "0"}}>
           <HabitsTracker />
         </Col>
-        <Col sm={12} md={8} className={styles.NavBox} style={{ height: "10vh", padding: "0", border: '1px solid red' }}>
+        <Col sm={12} md={8} className={styles.NavBox} style={{ height: "10vh", padding: "0"}}>
           <NavBar />
         </Col>
       </Row>
