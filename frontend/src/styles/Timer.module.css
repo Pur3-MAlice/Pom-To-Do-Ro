@@ -12,8 +12,8 @@
 .PlayPauseButton {
     background-color: #a577d2;
     border: none;
-    width: 4em;
-    height: 4em;
+    width: 3.5em;
+    height: 3.5em;
     border-radius: 5px;
 }
 
@@ -24,4 +24,9 @@
 
 .PlayPauseButton i {
     color: #ffc0cb;
+}
+
+.Clock {
+    width: 50%;
+    margin-top: 2.8em;
 }

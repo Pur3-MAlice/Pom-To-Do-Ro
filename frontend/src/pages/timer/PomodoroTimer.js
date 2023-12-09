@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import styles from "../../styles/Timer.module.css"
+import styles from "../../styles/Timer.module.css";
 import { Container } from "react-bootstrap";
 import PlayButton from "./PlayButton";
 import PauseButton from "./PauseButton";
@@ -32,7 +32,7 @@ function PomodoroTimer() {
       if (modeRef.current === "work") {
         completedWorkSessionsRef.current++;
         if (completedWorkSessionsRef.current === 4) {
-          setCompletedWorkSessions(0); 
+          setCompletedWorkSessions(0);
           setMode("longBreak");
           modeRef.current = "longBreak";
           const nextSeconds = settingsInfo.longMinutes * 60;
@@ -50,7 +50,10 @@ function PomodoroTimer() {
       }
 
       const nextMode = modeRef.current === "work" ? "break" : "work";
-      const nextSeconds = (nextMode === "work" ? settingsInfo.workMinutes : settingsInfo.breakMinutes) * 60;
+      const nextSeconds =
+        (nextMode === "work"
+          ? settingsInfo.workMinutes
+          : settingsInfo.breakMinutes) * 60;
 
       setMode(nextMode);
       modeRef.current = nextMode;
@@ -90,6 +93,49 @@ function PomodoroTimer() {
 
   return (
     <>
+      <Container className={styles.Clock}>
+        <CircularProgressbar
+          value={percentage}
+          text={minutes + ":" + seconds}
+          styles={buildStyles({
+            textColor: "#fff",
+            pathColor:
+              mode === "work"
+                ? "url(#workGradient)"
+                : mode === "break"
+                ? "url(#pauseGradient)"
+                : "url(#longGradient)",
+            trailColor: "#132935",
+            backgroundColor: "#3e98c7",
+          })}
+        />
+      </Container>
+      <Container
+        style={{ width: "80%", marginTop: "20px", textAlign: "center" }}
+      >
+        {isPaused ? (
+          <PlayButton
+            onClick={() => {
+              setIsPaused(false);
+              isPausedRef.current = false;
+            }}
+            className={styles.PlayPauseButton}
+          />
+        ) : (
+          <PauseButton
+            onClick={() => {
+              setIsPaused(true);
+              isPausedRef.current = true;
+            }}
+            className={styles.PlayPauseButton}
+          />
+        )}
+      </Container>
+      <Container style={{ width: "80%" }}>
+        <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <Settings />
+        </div>
+      </Container>
       {/* Gradient for work state */}
       <GradientSVG
         startColor="#183593"
@@ -113,44 +159,6 @@ function PomodoroTimer() {
         idCSS="longGradient"
         rotation="-45"
       />
-
-      <Container style={{ width: "70%" }}>
-        <CircularProgressbar
-          value={percentage}
-          text={minutes + ":" + seconds}
-          styles={buildStyles({
-            textColor: "#fff",
-            pathColor: 
-              mode === "work"
-                ? "url(#workGradient)"
-                : mode === "break"
-                ? "url(#pauseGradient)"
-                : "url(#longGradient)",
-            trailColor: '#132935', 
-            backgroundColor: '#3e98c7'
-          })}
-        />
-        </Container>
-        <Container style={{ width: "100%" }}>
-        <div style={{ marginTop: "20px", textAlign: "center" }}>
-          {isPaused ? (
-            <PlayButton onClick={() => {
-              setIsPaused(false);
-              isPausedRef.current = false;
-            }} className={styles.PlayPauseButton}
-            />
-          ) : (
-            <PauseButton onClick={() => {
-              setIsPaused(true);
-              isPausedRef.current = true;
-            }} className={styles.PlayPauseButton}
-            />
-          )}
-        </div>
-        <div style={{ marginTop: "20px", textAlign: "center" }}>
-          <Settings />
-        </div>
-        </Container>
     </>
   );
 }
