@@ -5,21 +5,19 @@
 }
 
 .HabitBox {
-    height: 300px;
     border: 1px solid black;
     padding: 0;
     position: absolute;
     left: 0px;
     bottom: 0px;
     background: #152b37;
-}
+} 
 
 .NavBox {
-    height: 80px;
     border: 1px solid black;
     padding: 0;
     position: absolute;
     right: 0px;
     bottom: 0px;
     background: #152b37;
-}
+} 
