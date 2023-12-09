@@ -75,7 +75,7 @@ function HabitsTracker({ message, filter = "" }) {
                     key={habit.id}
                     {...habit}
                     onHabitDeleted={handleHabitDeleted}
-                    onHabitCreated={handleHabitCreated}
+                    // onHabitCreated={handleHabitCreated}
                   />
                 ))}
               </tbody>
