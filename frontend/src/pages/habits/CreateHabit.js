@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Button, Form, Alert, Modal } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function CreateHabit({ onHabitCreated }) {
+function CreateHabit({ onHabitCreated, onClose }) {
   const [habitData, setHabitData] = useState({
     title: "",
   });
 
   const { title } = habitData;
   const [errors, setErrors] = useState({});
-  const history = useHistory();
   const [successMessage, setSuccessMessage] = useState("");
 
   const clearForm = () => {
@@ -19,6 +17,7 @@ function CreateHabit({ onHabitCreated }) {
     });
   };
 
+  
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
 
@@ -48,6 +47,9 @@ function CreateHabit({ onHabitCreated }) {
 
       // Call the onHabitCreated function with the new habit data
       onHabitCreated(response.data);
+
+      // Close the modal
+      onClose();
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -82,7 +84,7 @@ function CreateHabit({ onHabitCreated }) {
         </Alert>
       ))}
       <Modal.Footer>
-        <Button onClick={() => history.goBack()}>cancel</Button>
+        <Button onClick={() => onClose()}>cancel</Button>
         <Button type="submit">create</Button>
       </Modal.Footer>
     </Form>

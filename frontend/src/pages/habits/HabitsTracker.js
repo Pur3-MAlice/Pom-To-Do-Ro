@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
-
 import Habit from "./Habit";
-
 import styles from "../../styles/HabitList.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -22,10 +20,30 @@ function HabitsTracker({ message, filter = "" }) {
         console.log(err);
       }
     };
-
     setHasLoaded(false);
     fetchHabits();
   }, [filter, pathname]);
+
+  const handleHabitDeleted = (deletedHabitId) => {
+    setHabits((prevHabits) => ({
+      ...prevHabits,
+      results: prevHabits.results.filter((habit) => habit.id !== deletedHabitId),
+    }));
+  };
+
+  // const handleHabitCreated = (newHabit) => {
+  //   console.log("handleHabitCreated called with HABITTRACKER:", newHabit);
+    
+  //   setHabits((prevHabits) => ({
+  //     ...prevHabits,
+  //     results: [...prevHabits.results, newHabit],
+  //   }));
+
+  //   if (onHabitCreated) {
+  //     onHabitCreated(newHabit);
+  //     console.log("onHabitCreated called");
+  //   }
+  // };
 
   return (
     <>
@@ -53,12 +71,19 @@ function HabitsTracker({ message, filter = "" }) {
               </thead>
               <tbody>
                 {habits.results.map((habit) => (
-                  <Habit key={habit.id} {...habit} setHabits={setHabits} />
+                  <Habit
+                    key={habit.id}
+                    {...habit}
+                    onHabitDeleted={handleHabitDeleted}
+                    onHabitCreated={handleHabitCreated}
+                  />
                 ))}
               </tbody>
             </Table>
           ) : (
-            <h5 style={{ textAlign: "center", color: "white" }}>You've not added any Habits yet</h5>
+            <h5 style={{ textAlign: "center", color: "white" }}>
+              You've not added any Habits yet
+            </h5>
           )}
         </>
       ) : (

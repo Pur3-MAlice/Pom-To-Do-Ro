@@ -6,12 +6,27 @@ import appStyles from "../../../src/App.module.css";
 import styles from "../../styles/HabitList.module.css";
 import AddButton from "./AddButton.js";
 
-
-const HabitManager = () => {
+const HabitManager = ({onHabitCreated}) => {
   const [show, setShow] = useState(false);
+  const [habits, setHabits] = useState({ results: [] });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleHabitCreated = (newHabit) => {
+    console.log("handleHabitCreated called with HABITMANAGER:", newHabit);
+    
+    setHabits((prevHabits) => ({
+      ...prevHabits,
+      results: [...prevHabits.results, newHabit],
+    }));
+
+    if (onHabitCreated) {
+      onHabitCreated(newHabit);
+      console.log("onHabitCreated called");
+    }
+  };
+
 
   return (
     <>
@@ -21,7 +36,8 @@ const HabitManager = () => {
       </div>
       <Row className={`justify-content-md-center`}>
         <Col>
-          <HabitsTracker />
+          {/* Pass habits and onHabitCreated to HabitsTracker */}
+          <HabitsTracker habits={habits} onHabitCreated={handleHabitCreated} />
         </Col>
       </Row>
 
@@ -30,7 +46,8 @@ const HabitManager = () => {
           <Modal.Title>Add Habit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CreateHabit />
+          {/* Pass onHabitCreated and onClose to CreateHabit */}
+          <CreateHabit onHabitCreated={handleHabitCreated} onClose={handleClose} />
         </Modal.Body>
       </Modal>
     </>

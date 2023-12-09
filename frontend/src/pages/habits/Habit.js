@@ -3,20 +3,14 @@ import styles from "../../styles/HabitList.module.css";
 import DeleteButton from "./DeleteButton";
 import { axiosRes } from "../../api/axiosDefaults";
 
-const Habit = (props) => {
-  const {
-    id,
-    owner,
-    title,
-  } = props;
-
+const Habit = ({ id, owner, title, onHabitDeleted }) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/habits/${id}/`);
-      window.location.reload();
+      onHabitDeleted(id);
     } catch (err) {
       console.log(err);
     }
@@ -32,8 +26,11 @@ const Habit = (props) => {
         <td className={styles.ButtonContainer}>
           {title}
           <div>
-            <DeleteButton onClick={handleDelete} className={`${styles.Button} ${styles.DeleteButton}`}>
-                Delete
+            <DeleteButton
+              onClick={handleDelete}
+              className={`${styles.Button} ${styles.DeleteButton}`}
+            >
+              Delete
             </DeleteButton>
           </div>
         </td>
