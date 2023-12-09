@@ -1,6 +1,6 @@
-import { Button, Card } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/HabitList.module.css";
+import DeleteButton from "./DeleteButton";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -17,13 +17,11 @@ const Habit = (props) => {
 
   const history = useHistory();
 
-  const handleEdit = () => {
-    history.push(`/habits/${id}/edit`);
-  };
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/habits/${id}/`);
+      history.push('/');
     } catch (err) {
       console.log(err);
     }
@@ -35,14 +33,25 @@ const Habit = (props) => {
   }
 
   return (
-    <Card className={styles.HabitCard}>
-      <Card.Body className={styles.HabitCard}>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-      </Card.Body>
-      <Button onClick={handleDelete}>Delete</Button>
-      <div></div>
-      <Button onClick={handleEdit}>Edit</Button>
-    </Card>
+    <>
+      <tr>
+        <td className={styles.ButtonContainer}>
+          {title}
+          <div>
+            <DeleteButton onClick={handleDelete} className={`${styles.Button} ${styles.DeleteButton}`}>
+                Delete
+            </DeleteButton>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </>
   );
 };
 

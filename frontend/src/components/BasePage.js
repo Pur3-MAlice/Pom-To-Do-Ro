@@ -3,8 +3,8 @@ import { Row, Col, Button } from "react-bootstrap";
 import NavBar from "./NavBar";
 
 import TaskManager from "../pages/tasks/TaskManager";
-import HabitsTracker from "../pages/habits/HabitsTracker";
 import CreateTask from "../pages/tasks/CreateTask";
+import HabitManager from "../pages/habits/HabitManager";
 
 import styles from "../styles/BasePage.module.css";
 import Timer from "../pages/timer/Timer";
@@ -12,7 +12,7 @@ import Timer from "../pages/timer/Timer";
 const BasePage = () => {
   const [createTask, setCreateTask] = useState(false);
 
-  const handleToggle = () => {
+  const handleTaskToggle = () => {
     setCreateTask(!createTask);
   };
 
@@ -23,7 +23,7 @@ const BasePage = () => {
             <Timer />
         </Col>
         <Col sm={12} md={8} style={{ height: "90vh", padding: "0", border: '1px solid red' }}>
-          <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} variant="primary" onClick={handleToggle}>
+          <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} variant="primary" onClick={handleTaskToggle}>
             Add Task
           </Button>
           {createTask ? <CreateTask /> : <TaskManager />}
@@ -31,7 +31,7 @@ const BasePage = () => {
       </Row>
       <Row noGutters className={styles.BasePage}>
         <Col sm={12} md={4} className={styles.HabitBox} style={{ height: "30vh", padding: "0", border: '1px solid red' }}>
-          <HabitsTracker />
+          <HabitManager /> 
         </Col>
         <Col sm={12} md={8} className={styles.NavBox} style={{ height: "10vh", padding: "0", border: '1px solid red' }}>
           <NavBar />

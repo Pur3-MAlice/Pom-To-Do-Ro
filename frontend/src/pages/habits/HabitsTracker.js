@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
+import { Container, Table } from "react-bootstrap";
 
 import Habit from "./Habit";
 
@@ -32,19 +32,39 @@ function HabitsTracker({ message, filter = "" }) {
       {hasLoaded ? (
         <>
           {habits.results.length ? (
-            habits.results.map((habit) => (
-              <Habit key={habit.id} {...habit} setHabits={setHabits} />
-            ))
+            <Table
+              striped
+              bordered
+              hover
+              variant="dark"
+              style={{ color: "white" }}
+            >
+              <thead>
+                <tr>
+                  <th>Habit</th>
+                  <th>Mo</th>
+                  <th>Tu</th>
+                  <th>We</th>
+                  <th>Th</th>
+                  <th>Fr</th>
+                  <th>Sa</th>
+                  <th>Su</th>
+                </tr>
+              </thead>
+              <tbody>
+                {habits.results.map((habit) => (
+                  <Habit key={habit.id} {...habit} setHabits={setHabits} />
+                ))}
+              </tbody>
+            </Table>
           ) : (
-            <Container className={styles.Content} style={{color: "black",}}>
-              <h1>Sad nothing here </h1>
-            </Container>
+            <h5 style={{ textAlign: "center", color: "white" }}>
+              You've not added any Habits yet
+            </h5>
           )}
         </>
       ) : (
-        <Container className={styles.Content}>
-          <h1>Loading</h1>
-        </Container>
+        <h5 style={{ textAlign: "center", color: "white" }}>Loading</h5>
       )}
     </>
   );
