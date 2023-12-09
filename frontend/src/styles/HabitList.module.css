@@ -1,0 +1,23 @@
+.HabitCard {
+    color: black;
+}
+
+.Habit {
+    background-color: #ffffff;
+    border: 1px solid #dadadf;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.Habit figure,
+h5 {
+    margin: 0 0;
+}
+
+.Content {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #dadadf;
+}

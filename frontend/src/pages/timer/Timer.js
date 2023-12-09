@@ -1,5 +1,5 @@
 import {useState} from "react";
-import SettingsContext from "./SettingsContext";
+import SettingsContext from "../../contexts/SettingsContext";
 import PomodoroTimer from "./PomodoroTimer";
 
 function Timer() {

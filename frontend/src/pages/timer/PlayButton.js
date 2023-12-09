@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 function PlayButton(props) {
     return (
       <Button {...props}>
-        <i class="fa-solid fa-play"></i>
+        <i className="fa-solid fa-play"></i>
       </Button>
     );
   }

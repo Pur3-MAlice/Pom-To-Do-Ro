@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import SettingsContext from "./SettingsContext";
+import SettingsContext from "../../contexts/SettingsContext";
 import { Row, Col } from "react-bootstrap";
 import styles from "../../styles/Timer.module.css"
 

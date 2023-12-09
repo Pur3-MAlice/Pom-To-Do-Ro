@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 import PlayButton from "./PlayButton";
 import PauseButton from "./PauseButton";
 import GradientSVG from "./GradientSVG";
-import SettingsContext from "./SettingsContext";
+import SettingsContext from "../../contexts/SettingsContext";
 import Settings from "./Settings";
 
 function PomodoroTimer() {
