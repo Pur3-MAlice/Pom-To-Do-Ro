@@ -1,7 +1,6 @@
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/HabitList.module.css";
 import DeleteButton from "./DeleteButton";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosRes } from "../../api/axiosDefaults";
 
 const Habit = (props) => {
@@ -9,25 +8,20 @@ const Habit = (props) => {
     id,
     owner,
     title,
-    // completed,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
-  const history = useHistory();
-
-
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/habits/${id}/`);
-      history.push('/');
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
   };
 
-  // Render the card only if is_owner is true
   if (!is_owner) {
     return null;
   }

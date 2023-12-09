@@ -58,13 +58,13 @@ function HabitsTracker({ message, filter = "" }) {
               </tbody>
             </Table>
           ) : (
-            <h5 style={{ textAlign: "center", color: "white" }}>
-              You've not added any Habits yet
-            </h5>
+            <h5 style={{ textAlign: "center", color: "white" }}>You've not added any Habits yet</h5>
           )}
         </>
       ) : (
-        <h5 style={{ textAlign: "center", color: "white" }}>Loading</h5>
+        <Container className={styles.Content}>
+          <h1>Loading</h1>
+        </Container>
       )}
     </>
   );
