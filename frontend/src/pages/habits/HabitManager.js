@@ -36,7 +36,6 @@ const HabitManager = ({onHabitCreated}) => {
       </div>
       <Row className={`justify-content-md-center`}>
         <Col>
-          {/* Pass habits and onHabitCreated to HabitsTracker */}
           <HabitsTracker habits={habits} onHabitCreated={handleHabitCreated} />
         </Col>
       </Row>
@@ -46,7 +45,6 @@ const HabitManager = ({onHabitCreated}) => {
           <Modal.Title>Add Habit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Pass onHabitCreated and onClose to CreateHabit */}
           <CreateHabit onHabitCreated={handleHabitCreated} onClose={handleClose} />
         </Modal.Body>
       </Modal>

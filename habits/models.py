@@ -1,18 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils import timezone
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 class Habit(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=100)
-    completed = models.BooleanField(default=False)
-    last_completed = models.DateField(null=True, blank=True)
+    title = models.CharField(max_length=30)
     streak = models.IntegerField(default=0)
+    checkboxes_reset_at = models.DateTimeField(null=True, blank=True)
+
+    # Day of the week checkboxes
+    monday = models.BooleanField(default=False)
+    tuesday = models.BooleanField(default=False)
+    wednesday = models.BooleanField(default=False)
+    thursday = models.BooleanField(default=False)
+    friday = models.BooleanField(default=False)
+    saturday = models.BooleanField(default=False)
+    sunday = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -20,24 +26,35 @@ class Habit(models.Model):
     def __str__(self):
         return f'{self.id} {self.title}'
 
-# def current_streak(habit):
-#     total_streak = 0
-#     current_streak = 0
-#     today = datetime.date.today()
-#     compareDate = today + datetime.timedelta(1)
-#     entry_dates = list(Entry.objects.values("date").filter(habit=habit, date__lte = today).order_by("-date"))
+    def update_streak(self):
+        print("Updating streak...")
+        try:
+            now = datetime.now(timezone.utc).date()
+            if getattr(self, now.strftime("%A").lower()):
+                yesterday = now - timedelta(days=1)
+                if getattr(self, yesterday.strftime("%A").lower()):
+                    self.streak += 1
+                else:
+                    self.streak = 1
+            else:
+                self.streak = 0
+            self.last_completed = now
+        except Exception as e:
+            print(f"Error in update_streak: {e}")
 
-#     for date in entry_dates:
-#         delta = compareDate - date
-#         if delta.days == 1: 
-#             current_streak += 1
-#         elif delta.days == 0: 
-#             pass
-#         else: 
-#             break
-#         compareDate = date
+    def reset_checkboxes(self):
+        print("Resetting checkboxes...")
+        try:
+            now = datetime.now(timezone.utc)
+            next_sunday_midnight = now + timedelta(
+                days=(6 - now.weekday()) + 1,
+                hours=-now.hour,
+                minutes=-now.minute,
+                seconds=-now.second,
+                microseconds=-now.microsecond
+            )
 
-#     if current_streak > total_streak:
-#         total_streak = current_streak
-
-#     return total_streak
+            self.checkboxes_reset_at = next_sunday_midnight
+            self.monday = self.tuesday = self.wednesday = self.thursday = self.friday = self.saturday = self.sunday = False
+        except Exception as e:
+            print(f"Error in reset_checkboxes: {e}")

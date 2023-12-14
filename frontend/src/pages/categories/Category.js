@@ -34,7 +34,6 @@ const Category = (props) => {
             <Button onClick={handleDelete}>delete</Button>
           </>
         )}
-
       <Link to={`/categories/${id}`}></Link>
     </>
   );

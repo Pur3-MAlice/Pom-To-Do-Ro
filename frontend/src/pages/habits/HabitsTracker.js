@@ -31,20 +31,6 @@ function HabitsTracker({ message, filter = "" }) {
     }));
   };
 
-  // const handleHabitCreated = (newHabit) => {
-  //   console.log("handleHabitCreated called with HABITTRACKER:", newHabit);
-    
-  //   setHabits((prevHabits) => ({
-  //     ...prevHabits,
-  //     results: [...prevHabits.results, newHabit],
-  //   }));
-
-  //   if (onHabitCreated) {
-  //     onHabitCreated(newHabit);
-  //     console.log("onHabitCreated called");
-  //   }
-  // };
-
   return (
     <>
       {hasLoaded ? (
@@ -60,13 +46,13 @@ function HabitsTracker({ message, filter = "" }) {
               <thead>
                 <tr>
                   <th>Habit</th>
-                  <th>Mo</th>
-                  <th>Tu</th>
-                  <th>We</th>
-                  <th>Th</th>
-                  <th>Fr</th>
-                  <th>Sa</th>
-                  <th>Su</th>
+                  <th>M</th>
+                  <th>T</th>
+                  <th>W</th>
+                  <th>T</th>
+                  <th>F</th>
+                  <th>S</th>
+                  <th>S</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,7 +61,6 @@ function HabitsTracker({ message, filter = "" }) {
                     key={habit.id}
                     {...habit}
                     onHabitDeleted={handleHabitDeleted}
-                    // onHabitCreated={handleHabitCreated}
                   />
                 ))}
               </tbody>

@@ -19,3 +19,10 @@
     bottom: 0px;
     background: #152b37;
 } 
+
+@media (max-width: 767px) {
+    .HabitBox,
+    .NavBox {
+        position: static;
+    }
+}

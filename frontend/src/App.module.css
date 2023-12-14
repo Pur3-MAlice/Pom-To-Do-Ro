@@ -2,7 +2,7 @@
   font-family: 'Open Sans', sans-serif;
   background-color: #152b37;
   min-height: 100vh;
-  overflow-x: hidden
+  overflow: hidden;
 }
 
 .div {
