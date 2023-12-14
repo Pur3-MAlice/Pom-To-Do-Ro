@@ -19,10 +19,10 @@ const BasePage = () => {
   return (
     <>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={4} style={{ height: "60vh", padding: "0", border: '1px solid red'}}>
+        <Col sm={12} md={4} style={{ height: "60vh", padding: "0", border: '1px solid #132731'}}>
             <Timer />
         </Col>
-        <Col sm={12} md={8} style={{ height: "90vh", padding: "0", border: '1px solid red', overflowY: 'auto', overflowX: 'hidden'}}>
+        <Col sm={12} md={8} style={{ height: "90vh", padding: "0", border: '1px solid #132731', overflowY: 'auto', overflowX: 'hidden'}}>
           <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} variant="primary" onClick={handleTaskToggle}>
             Add Task
           </Button>
@@ -30,10 +30,10 @@ const BasePage = () => {
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={4} className={styles.HabitBox} style={{ height: "40vh", padding: "0", border: '1px solid red', overflowY: 'auto' }}>
+        <Col sm={12} md={4} className={styles.HabitBox} style={{ height: "40vh", padding: "0", border: '1px solid #132731', overflowY: 'auto', overflowX: 'hidden'}}>
           <HabitManager /> 
         </Col>
-        <Col sm={12} md={8} className={styles.NavBox} style={{ height: "10vh", padding: "0", border: '1px solid red' }}>
+        <Col sm={12} md={8} className={styles.NavBox} style={{ height: "10vh", padding: "0", border: '1px solid #132731' }}>
           <NavBar />
         </Col>
       </Row>

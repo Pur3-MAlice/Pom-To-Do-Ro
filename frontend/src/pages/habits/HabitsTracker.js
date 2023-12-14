@@ -42,6 +42,7 @@ function HabitsTracker({ message, filter = "" }) {
               hover
               variant="dark"
               style={{ color: "white" }}
+              className={styles.Table}
             >
               <thead>
                 <tr>
