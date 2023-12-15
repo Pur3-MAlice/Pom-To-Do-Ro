@@ -52,10 +52,16 @@ h5 {
 }
 
 .Table {
-  /* max-width: 800px;  */
-  width: 95%;
-  margin: 0 auto;
+  width: 100%;
+  font-size: .9rem;
 }
+
+.Check {
+  padding: 0.5rem;
+}
+table td, .table th {
+  padding: 0.5rem;}
+
 
 input[type="checkbox"] {
   appearance: none;
@@ -71,4 +77,14 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   background-color: #833ab4;
   border-color: #9549c7;
+}
+
+@media (max-width: 767px) {
+  .Button{
+    position: relative;
+  }
+
+  .DeleteButton {
+    position: absolute;
+  }
 }

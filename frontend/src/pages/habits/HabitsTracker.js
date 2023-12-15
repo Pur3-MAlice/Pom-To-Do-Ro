@@ -36,36 +36,38 @@ function HabitsTracker({ message, filter = "" }) {
       {hasLoaded ? (
         <>
           {habits.results.length ? (
-            <Table
-              striped
-              bordered
-              hover
-              variant="dark"
-              style={{ color: "white" }}
-              className={styles.Table}
-            >
-              <thead>
-                <tr>
-                  <th>Habit</th>
-                  <th>M</th>
-                  <th>T</th>
-                  <th>W</th>
-                  <th>T</th>
-                  <th>F</th>
-                  <th>S</th>
-                  <th>S</th>
-                </tr>
-              </thead>
-              <tbody>
-                {habits.results.map((habit) => (
-                  <Habit
-                    key={habit.id}
-                    {...habit}
-                    onHabitDeleted={handleHabitDeleted}
-                  />
-                ))}
-              </tbody>
-            </Table>
+            <div className={styles.Table}>
+              <Table
+                striped
+                bordered
+                hover
+                variant="dark"
+                style={{ color: "white" }}
+                className={styles.Table}
+              >
+                <thead>
+                  <tr>
+                    <th className="styles.Check">Habit</th>
+                    <th className="styles.Check">M</th>
+                    <th className="styles.Check">T</th>
+                    <th className="styles.Check">W</th>
+                    <th className="styles.Check">T</th>
+                    <th className="styles.Check">F</th>
+                    <th className="styles.Check">S</th>
+                    <th className="styles.Check">S</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {habits.results.map((habit) => (
+                    <Habit
+                      key={habit.id}
+                      {...habit}
+                      onHabitDeleted={handleHabitDeleted}
+                    />
+                  ))}
+                </tbody>
+              </Table>
+            </div>
           ) : (
             <h5 style={{ textAlign: "center", color: "white" }}>
               You've not added any Habits yet

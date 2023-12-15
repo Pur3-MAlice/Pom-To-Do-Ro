@@ -30,9 +30,9 @@ const HabitManager = ({onHabitCreated}) => {
 
   return (
     <>
-      <AddButton onClick={handleShow} className={styles.Button} />
       <div className={`${appStyles.Title}`}>
         <h3>My Habits:</h3>
+        <AddButton onClick={handleShow} className={styles.Button}/>
       </div>
       <Row className={`justify-content-md-center`}>
         <Col>
