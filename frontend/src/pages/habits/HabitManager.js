@@ -28,7 +28,7 @@ const HabitManager = ({ onHabitCreated, message, filter = "", updateHabits, ...p
 
   return (
     <>
-      <div className={`${appStyles.Title}`}>
+      <div className="d-flex align-items-center justify-content-center">
         <h3>My Habits:</h3>
         <AddButton onClick={handleShow} className={styles.Button} />
       </div>
