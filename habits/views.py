@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions, filters
+from rest_framework.response import Response
 from django.db.models import Count
 from pomtodoro_api.permissions import IsOwnerOrReadOnly
 from .models import Habit
@@ -24,7 +25,6 @@ class HabitList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         try:
             habit = serializer.save(owner=self.request.user)
-            habit.update_streak()
             habit.reset_checkboxes()
             habit.save()
         except Exception as e:

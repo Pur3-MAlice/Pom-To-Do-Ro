@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
+
 import styles from "../../styles/HabitList.module.css";
+
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import DeleteButton from "./DeleteButton";
 

@@ -5,7 +5,7 @@ import styles from "../../styles/HabitList.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function HabitsTracker({ message, filter = "" }) {
+function HabitsTracker({ message, filter = "", onHabitCreated, updateHabits }) {
   const [habits, setHabits] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -24,11 +24,24 @@ function HabitsTracker({ message, filter = "" }) {
     fetchHabits();
   }, [filter, pathname]);
 
+  const handleHabitCreated = (newHabit) => {
+    if (onHabitCreated) {
+      onHabitCreated(newHabit);
+      updateHabits((prevHabits) => ({
+        ...prevHabits,
+        results: [...prevHabits.results, newHabit],
+      }));
+
+      console.log("onHabitCreated called");
+    }
+  };
+
   const handleHabitDeleted = (deletedHabitId) => {
     setHabits((prevHabits) => ({
       ...prevHabits,
       results: prevHabits.results.filter((habit) => habit.id !== deletedHabitId),
     }));
+    
   };
 
   return (
@@ -63,6 +76,7 @@ function HabitsTracker({ message, filter = "" }) {
                       key={habit.id}
                       {...habit}
                       onHabitDeleted={handleHabitDeleted}
+                      onHabitCreated={handleHabitCreated}
                     />
                   ))}
                 </tbody>

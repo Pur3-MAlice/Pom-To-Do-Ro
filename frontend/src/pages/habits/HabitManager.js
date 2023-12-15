@@ -6,7 +6,7 @@ import appStyles from "../../../src/App.module.css";
 import styles from "../../styles/HabitList.module.css";
 import AddButton from "./AddButton.js";
 
-const HabitManager = ({onHabitCreated}) => {
+const HabitManager = ({ onHabitCreated, message, filter = "", updateHabits, ...props }) => {
   const [show, setShow] = useState(false);
   const [habits, setHabits] = useState({ results: [] });
 
@@ -14,8 +14,6 @@ const HabitManager = ({onHabitCreated}) => {
   const handleShow = () => setShow(true);
 
   const handleHabitCreated = (newHabit) => {
-    console.log("handleHabitCreated called with HABITMANAGER:", newHabit);
-    
     setHabits((prevHabits) => ({
       ...prevHabits,
       results: [...prevHabits.results, newHabit],
@@ -32,11 +30,15 @@ const HabitManager = ({onHabitCreated}) => {
     <>
       <div className={`${appStyles.Title}`}>
         <h3>My Habits:</h3>
-        <AddButton onClick={handleShow} className={styles.Button}/>
+        <AddButton onClick={handleShow} className={styles.Button} />
       </div>
       <Row className={`justify-content-md-center`}>
         <Col>
-          <HabitsTracker habits={habits} onHabitCreated={handleHabitCreated} />
+          <HabitsTracker
+            habits={habits}
+            onHabitCreated={handleHabitCreated}
+            updateHabits={setHabits}
+          />
         </Col>
       </Row>
 
@@ -45,7 +47,9 @@ const HabitManager = ({onHabitCreated}) => {
           <Modal.Title>Add Habit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CreateHabit onHabitCreated={handleHabitCreated} onClose={handleClose} />
+          <CreateHabit
+            onHabitCreated={handleHabitCreated} onClose={handleClose} updateHabits={updateHabits}
+          />
         </Modal.Body>
       </Modal>
     </>

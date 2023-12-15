@@ -22,10 +22,16 @@ function TasksPage({ message, filter = "" }) {
         console.log(err);
       }
     };
-
     setHasLoaded(false);
     fetchTasks();
   }, [filter, pathname]);
+
+  const handleTaskDeleted = (deletedTaskId) => {
+    setTasks((prevTasks) => ({
+      ...prevTasks,
+      results: prevTasks.results.filter((task) => task.id !== deletedTaskId),
+    }));
+  };
 
   return (
     <>
@@ -33,11 +39,15 @@ function TasksPage({ message, filter = "" }) {
         <>
           {tasks.results.length ? (
             tasks.results.map((task) => (
-              <Task key={task.id} {...task} setTasks={setTasks} />
+              <Task 
+              key={task.id} 
+              {...task} 
+              onTaskDeleted={handleTaskDeleted}
+              />
             ))
           ) : (
-            <Container className={appStyles.Content}>
-              <h1>Sad nothing here </h1>
+            <Container style={{ color: "white" }}>
+              <h1 style={{ color: "white" }}>Add Task</h1>
             </Container>
           )}
         </>

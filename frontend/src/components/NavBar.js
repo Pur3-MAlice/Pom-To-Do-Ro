@@ -32,15 +32,17 @@ const NavBar = () => {
         </NavLink>
       </Nav.Item>
       <Nav.Item>
-      <NavLink
-        to={`/profiles/${currentUser?.profile_id}`}>
-         {currentUser?.username}'s Profile<i className="fa-solid fa-user-astronaut"></i>
+        <NavLink to="/" onClick={handleSignOut}>
+          Signout <i className="fa-solid fa-ghost"></i>
         </NavLink>
       </Nav.Item>
       <Nav.Item>
         <NavLink to="/" onClick={handleSignOut}>
-          Signout <i className="fa-solid fa-ghost"></i>
+          Categories <i className="fa-solid fa-list"></i>
         </NavLink>
+      </Nav.Item>
+      <Nav.Item>
+        {currentUser?.username}'s TaskManager
       </Nav.Item>
     </Nav>
     </>

@@ -1,24 +1,17 @@
 import React, { useEffect, useCallback, useState } from "react";
-
-import {
-  Button,
-  Form,
-  Alert,
-  Row,
-  Col,
-} from "react-bootstrap";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Button, Form, Alert, Row, Col } from "react-bootstrap";
 
 import styles from '../../styles/BasePage.module.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import NavBar from "../../components/NavBar";
-import PomodoroTimer from "../timer/PomodoroTimer";
-import HabitsTracker from "../habits/HabitsTracker";
+import Timer from "../timer/Timer";
+import HabitManager from "../habits/HabitManager";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const TaskEditForm = () => {
   const currentUser = useCurrentUser();
@@ -66,7 +59,6 @@ const TaskEditForm = () => {
             is_owner: category.is_owner,
           }))
         );
-        console.log("categories got", setCategories);
       } else {
         console.error("Invalid response format for categories:", response.data);
       }
@@ -119,8 +111,6 @@ const TaskEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
-    console.log(currentUser?.username);
 
     formData.append("title", title);
     formData.append("content", content);
@@ -242,40 +232,26 @@ const TaskEditForm = () => {
   return (
     <>
       <Row noGutters className={styles.BasePage}>
-        <Col
-          sm={12}
-          md={4}
-          style={{ height: "415px", border: "1px solid black", padding: "0" }}
-        >
-          <PomodoroTimer />
+        <Col sm={12} md={4} className={styles.TimerBox}>
+          <Timer />
         </Col>
-        <Col
-          sm={12}
-          md={8}
-          style={{ height: "635px", border: "1px solid black", padding: "0" }}
-        >
+        <Col sm={12} md={8} className={styles.TaskBox}>
           Edit Task {taskData.title}
           <Form onSubmit={handleSubmit}>
             {successMessage && (
-              <Alert
-                variant="success"
-                onClose={() => setSuccessMessage("")}
-                dismissible
-              >
+              <Alert variant="success" onClose={() => setSuccessMessage("")} dismissible>
                 {successMessage}
               </Alert>
             )}
             <Row>
-              <Col>
-                  {textFields}
-              </Col>
+              <Col>{textFields}</Col>
             </Row>
           </Form>
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>
-        <Col sm={12} md={4} className={styles.HabitBox}>
-          <HabitsTracker />
+      <Col sm={12} md={4} className={styles.HabitBox}>
+          <HabitManager />
         </Col>
         <Col sm={12} md={8} className={styles.NavBox}>
           <NavBar />

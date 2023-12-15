@@ -57,6 +57,15 @@ const Task = (props) => {
     fetchCategories();
   }, [fetchCategories]);
 
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/tasks/${id}/`);
+      props.onTaskDeleted(id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const getCategoryTitle = () => {
     const foundCategory = categories.find((cat) => cat.id === category);
     return foundCategory ? foundCategory.title : "Uncategorized";
@@ -64,14 +73,6 @@ const Task = (props) => {
 
   const handleEdit = () => {
     history.push(`/tasks/${id}/edit`);
-  };
-
-  const handleDelete = async () => {
-    try {
-      await axiosRes.delete(`/tasks/${id}/`);
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   if (!is_owner) {

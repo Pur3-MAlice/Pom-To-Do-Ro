@@ -3,13 +3,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Button, Form, Alert } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 
-function CreateTask() {
+function CreateTask({ onToggle }) {
 
   const currentUser = useCurrentUser();
 
@@ -31,8 +30,6 @@ function CreateTask() {
   const [loadingCategories, setLoadingCategories] = useState(true);
 
   const [errors, setErrors] = useState({});
-
-  const history = useHistory();
 
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -101,7 +98,6 @@ function CreateTask() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    console.log(currentUser?.username);
 
     formData.append("title", title);
     formData.append("content", content);
@@ -114,6 +110,7 @@ function CreateTask() {
       await axiosReq.post("/tasks/", formData);
       clearForm();
       setSuccessMessage("Task created!");
+      onToggle();
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -226,7 +223,7 @@ function CreateTask() {
           {message}
         </Alert>
       ))}
-        <Button onClick={() => history.goBack()}>cancel</Button>
+        <Button onClick={() => onToggle()}>cancel</Button>
         <Button type="submit">create</Button>
     </Form>
   );

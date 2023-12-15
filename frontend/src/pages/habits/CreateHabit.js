@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Alert, Modal } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function CreateHabit({ onHabitCreated, onClose }) {
+function CreateHabit({ onHabitCreated, onClose, updateHabits, ...props}) {
   const [habitData, setHabitData] = useState({
     title: "",
   });
@@ -43,12 +43,17 @@ function CreateHabit({ onHabitCreated, onClose }) {
       const response = await axiosReq.post("/habits/", formData);
       clearForm();
       setSuccessMessage("Habit created!");
-
-      // Call the onHabitCreated function with the new habit data
-      onHabitCreated(response.data);
-
-      // Close the modal
       onClose();
+
+      onHabitCreated(response.data);
+      
+      updateHabits((prevHabits) => ({
+        ...prevHabits,
+        results: [...prevHabits.results, response.data],
+      }));
+
+      console.log("After updateHabits call");
+      
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

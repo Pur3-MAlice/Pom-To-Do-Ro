@@ -13,7 +13,7 @@ const BasePage = () => {
   const [createTask, setCreateTask] = useState(false);
 
   const handleTaskToggle = () => {
-    setCreateTask(!createTask);
+    setCreateTask((prevCreateTask) => !prevCreateTask);
   };
 
   return (
@@ -26,7 +26,7 @@ const BasePage = () => {
           <Button className={styles.TaskButton} variant="primary" onClick={handleTaskToggle}>
           <i className="fa-solid fa-plus"></i>
           </Button>
-          {createTask ? <CreateTask /> : <TaskManager />}
+          {createTask ? <CreateTask onToggle={handleTaskToggle} /> : <TaskManager />}
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>
