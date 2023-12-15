@@ -110,8 +110,9 @@ function PomodoroTimer() {
           })}
         />
       </Container>
+
       <Container
-        style={{ width: "80%", marginTop: "20px", textAlign: "center" }}
+        style={{ width: "80%", marginTop: "10px", textAlign: "center" }}
       >
         {isPaused ? (
           <PlayButton
@@ -131,11 +132,13 @@ function PomodoroTimer() {
           />
         )}
       </Container>
+      
       <Container style={{ width: "80%" }}>
-        <div style={{ marginTop: "20px", textAlign: "center" }}>
+        <div style={{marginTop: "10px", textAlign: "center" }}>
           <Settings />
         </div>
       </Container>
+      
       {/* Gradient for work state */}
       <GradientSVG
         startColor="#183593"

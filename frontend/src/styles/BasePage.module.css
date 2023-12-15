@@ -10,6 +10,10 @@
     left: 0px;
     bottom: 0px;
     background: #152b37;
+    height: 40vh; 
+    border: 1px solid #132731; 
+    overflow-y: auto; 
+    overflow-x: hidden
 }
 
 .NavBox {
@@ -18,6 +22,22 @@
     right: 0px;
     bottom: 0px;
     background: #152b37;
+    height: 10vh;
+    border: 1px solid #132731;
+}
+
+.TimerBox {
+    height: 60vh;
+    padding: 0;
+    border: 1px solid #132731;
+}
+
+.TaskBox {
+    height: 90vh;
+    padding: 0;
+    border: 1px solid #132731; 
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .TaskButton {
@@ -26,7 +46,6 @@
     top: 0px;
     background-color: transparent;
     border: transparent;
-    position: absolute;
 }
 
 .TaskButton {
@@ -46,11 +65,23 @@
     color: #048ace;
 }
 
-
 @media (max-width: 767px) {
 
     .HabitBox,
     .NavBox {
         position: static;
+    }
+
+    .HabitBox,
+    .NavBox,
+    .TaskBox,
+    .TimerBox {
+        overflow-x: hidden;
+       
+    }
+
+    .TimerBox {
+        overflow-y: hidden;
+        height: auto;
     }
 }

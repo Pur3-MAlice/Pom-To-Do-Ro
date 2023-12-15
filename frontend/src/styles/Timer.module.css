@@ -30,3 +30,29 @@
     width: 50%;
     margin-top: 2.8em;
 }
+
+
+@media (max-width: 800px) {
+    .inputStyle {
+        width: 4em;
+        padding: .8em;
+        font-size: 1em;
+    }
+    
+    .PlayPauseButton {
+        width: 2.5em;
+        height: 2.5em;
+    }
+
+    .PlayPauseButton i {
+        padding: 0px;
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 767px) {
+    .Clock {
+        width: 25%;
+        margin-top: 2.8em;
+    }
+}

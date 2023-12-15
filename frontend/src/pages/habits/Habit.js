@@ -31,23 +31,17 @@ const Habit = ({ id, owner, title, monday, tuesday, wednesday, thursday, friday,
   const is_owner = currentUser?.username === owner;
 
   const handleCheckboxChange = async (day) => {
-    console.log(`Before state update:`, checkboxStates);
-
     setCheckboxStates((prevStates) => {
       const updatedStates = { ...prevStates, [day]: !prevStates[day] };
-      console.log(`After state update:`, updatedStates);
-  
       return updatedStates;
     });
 
     try {
-    const response = await axiosReq.patch(`/habits/${id}/`, {
+    await axiosReq.patch(`/habits/${id}/`, {
       [day]: !checkboxStates[day],
     });
-    const updatedHabit = response.data;
-    console.log("Updated Habit:", updatedHabit);
-  } catch (error) {
-    console.error("Error updating checkbox:", error);
+  } catch (err) {
+    console.log("Error updating checkbox:", err);
   }
   };
 

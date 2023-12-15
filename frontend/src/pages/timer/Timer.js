@@ -10,7 +10,7 @@ function Timer() {
   const [longMinutes, setLongMinutes] = useState(15);
 
   return (
-    <div>
+    <>
       <SettingsContext.Provider value={{
         showSettings,
         setShowSettings,
@@ -23,7 +23,7 @@ function Timer() {
       }}>
         <PomodoroTimer />
       </SettingsContext.Provider>
-    </div>
+    </>
   );
 }
 
