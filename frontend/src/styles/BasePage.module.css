@@ -10,7 +10,7 @@
     left: 0px;
     bottom: 0px;
     background: #152b37;
-} 
+}
 
 .NavBox {
     padding: 0;
@@ -18,9 +18,37 @@
     right: 0px;
     bottom: 0px;
     background: #152b37;
-} 
+}
+
+.TaskButton {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-color: transparent;
+    border: transparent;
+    position: absolute;
+}
+
+.TaskButton {
+    background-color: transparent;
+    border: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.TaskButton:hover {
+    background-color: transparent;
+    border: transparent;
+}
+
+.TaskButton i:hover {
+    color: #048ace;
+}
+
 
 @media (max-width: 767px) {
+
     .HabitBox,
     .NavBox {
         position: static;

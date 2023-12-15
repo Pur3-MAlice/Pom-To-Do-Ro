@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 
 import Task from "./Task";
-
 import appStyles from "../../App.module.css";
-// import styles from "../../styles/TaskList.module.css";
+
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 

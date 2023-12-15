@@ -1,7 +1,9 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { Button, Card, Media } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+
 import styles from "../../styles/TaskList.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 
@@ -11,7 +13,6 @@ const Task = (props) => {
     owner,
     title,
     content,
-    updated_at,
     important,
     urgent,
     due,
@@ -31,9 +32,10 @@ const Task = (props) => {
     try {
       const response = await axiosReq.get("/categories/");
       if (response.data?.results) {
-        const userCategories = response.data.results.filter((category) => (
-          category.owner === currentUser?.username && category.is_owner
-        ));
+        const userCategories = response.data.results.filter(
+          (category) =>
+            category.owner === currentUser?.username && category.is_owner
+        );
         setCategories(
           userCategories.map((category) => ({
             id: category.id,
@@ -72,36 +74,37 @@ const Task = (props) => {
     }
   };
 
-  // Render the card only if is_owner is true
   if (!is_owner) {
     return null;
   }
 
   if (loadingCategories) {
-    return <p>Loading categories...</p>;
+    return <p>Loading tasks...</p>;
   }
 
   return (
-    <Card>
-      <Card.Body>
-        <Media className="align-items-center justify-content-between">
-          <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
-            {is_owner && taskPage && "..."}
-          </div>
-        </Media>
-      </Card.Body>
+    <Card className={styles.Task}>
+      {is_owner && taskPage && "..."}
       <Card.Body className={styles.TaskCard}>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {title && <Card.Title  style={{ textDecoration: 'underline' }}>{title}</Card.Title>}
+        {category && <Card.Text>{getCategoryTitle()}</Card.Text>}
         {content && <Card.Text>{content}</Card.Text>}
-        {important && <Card.Text>important</Card.Text>}
-        {urgent && <Card.Text>urgent</Card.Text>}
-        {due && <Card.Text>{due}</Card.Text>}
-        {category && <Card.Text>Category: {getCategoryTitle()}</Card.Text>}
+        <div className={styles.ImpUrgContainer}>
+          {important && <Card.Text className={styles.Imp}>Important</Card.Text>}
+          {urgent && <Card.Text className={styles.Urg}>Urgent</Card.Text>}
+        </div>
+        <div className={styles.DueContainer}>
+          {due && <Card.Text>{due}</Card.Text>}
+        </div>
       </Card.Body>
-      <Button onClick={handleDelete}>Delete</Button>
-      <div></div>
-      <Button onClick={handleEdit}>Edit</Button>
+      <div className={styles.TaskFooter}>
+        <Button className={styles.EditButton} onClick={handleEdit}>
+          Edit
+        </Button>
+        <Button className={styles.DeleteButton} onClick={handleDelete}>
+          Completed
+        </Button>
+      </div>
     </Card>
   );
 };

@@ -23,8 +23,8 @@ const BasePage = () => {
             <Timer />
         </Col>
         <Col sm={12} md={8} style={{ height: "90vh", padding: "0", border: '1px solid #132731', overflowY: 'auto', overflowX: 'hidden'}}>
-          <Button className={`${styles.Button} ${styles.Blue} ${styles.ButtonTask}`} variant="primary" onClick={handleTaskToggle}>
-            Add Task
+          <Button className={styles.TaskButton} variant="primary" onClick={handleTaskToggle}>
+          <i className="fa-solid fa-plus"></i>
           </Button>
           {createTask ? <CreateTask /> : <TaskManager />}
         </Col>

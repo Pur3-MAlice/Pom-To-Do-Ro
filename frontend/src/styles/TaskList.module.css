@@ -1,35 +1,83 @@
-.TaskCard {
-    color: black;
+.SearchBar input {
+  border-radius: 20px;
+  color: #242a3d;
+  padding-left: 40px;
+  margin-bottom: 16px;
 }
 
-.SearchBar input {
-    border-radius: 20px;
-    color: #242a3d;
-    padding-left: 40px;
-    margin-bottom: 16px;
-  }
-  
-  .SearchIcon {
-    position: absolute;
-    font-size: 1.2rem;
-    padding: 9px;
-    padding-left: 15px;
-  }
-  
-  .SearchIcon:hover {
-    cursor: default;
-    color: #cfced3;
-  }
+.SearchIcon {
+  position: absolute;
+  font-size: 1.2rem;
+  padding: 9px;
+  padding-left: 15px;
+}
 
-  .Task {
-    background-color: #ffffff;
-    border: 1px solid #dadadf;
-    border-radius: 2px;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  
-  .Task figure,
-  h5 {
-    margin: 0 0;
-  }
+.SearchIcon:hover {
+  cursor: default;
+  color: #cfced3;
+}
+
+.Task {
+  background-color: #24475a;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+  color: white;
+}
+
+
+.TaskCard {
+  background-color: #24475a;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  text-align: left;
+  color: white;
+  position: relative;
+}
+
+.DeleteButton,
+.EditButton {
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-right: 5px;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 13px;
+  border: none;
+  background: #083467 ;
+}
+
+.TaskFooter {
+  background-color: transparent;
+}
+
+.ImpUrgContainer {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.DueContainer {
+  position: absolute;
+  bottom: -25px;
+  right: 15px;
+}
+
+.Imp,
+.Urg {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-right: 5px;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.Imp{
+  background: linear-gradient(49deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 100%);
+}
+
+.Urg{
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
