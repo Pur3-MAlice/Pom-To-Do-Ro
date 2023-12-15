@@ -71,13 +71,13 @@ const Habit = ({ id, owner, title, monday, tuesday, wednesday, thursday, friday,
           </DeleteButton>
         </div>
       </td>
-      <td className="styles.Check"><input type="checkbox" checked={checkboxStates.monday} onChange={() => handleCheckboxChange("monday")} /></td>
-      <td className="styles.Check"><input type="checkbox" checked={checkboxStates.tuesday} onChange={() => handleCheckboxChange("tuesday")} /></td>
-      <td className="styles.Check"><input type="checkbox" checked={checkboxStates.wednesday} onChange={() => handleCheckboxChange("wednesday")} /></td>
-      <td className="styles.Check"><input type="checkbox" checked={checkboxStates.thursday} onChange={() => handleCheckboxChange("thursday")} /></td>
-      <td className="styles.Check"><input type="checkbox" checked={checkboxStates.friday} onChange={() => handleCheckboxChange("friday")} /></td>
-      <td className="styles.Check"><input type="checkbox" checked={checkboxStates.saturday} onChange={() => handleCheckboxChange("saturday")} /></td>
-      <td className="styles.Check"><input type="checkbox" checked={checkboxStates.sunday} onChange={() => handleCheckboxChange("sunday")} /></td>
+      <td className={styles.Check}><input type="checkbox" checked={checkboxStates.monday} onChange={() => handleCheckboxChange("monday")} /></td>
+      <td className={styles.Check}><input type="checkbox" checked={checkboxStates.tuesday} onChange={() => handleCheckboxChange("tuesday")} /></td>
+      <td className={styles.Check}><input type="checkbox" checked={checkboxStates.wednesday} onChange={() => handleCheckboxChange("wednesday")} /></td>
+      <td className={styles.Check}><input type="checkbox" checked={checkboxStates.thursday} onChange={() => handleCheckboxChange("thursday")} /></td>
+      <td className={styles.Check}><input type="checkbox" checked={checkboxStates.friday} onChange={() => handleCheckboxChange("friday")} /></td>
+      <td className={styles.Check}><input type="checkbox" checked={checkboxStates.saturday} onChange={() => handleCheckboxChange("saturday")} /></td>
+      <td className={styles.Check}><input type="checkbox" checked={checkboxStates.sunday} onChange={() => handleCheckboxChange("sunday")} /></td>
     </tr>
     )}
     </>

@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useState } from "react";
 import { Button, Form, Alert, Row, Col } from "react-bootstrap";
 
 import styles from '../../styles/BasePage.module.css';
+import taskStyles from "../../styles/CreateEditTask.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { useHistory, useParams } from "react-router-dom";
@@ -51,8 +52,13 @@ const TaskEditForm = () => {
     try {
       const response = await axiosReq.get("/categories/");
       if (response.data?.results) {
+        const userCategories = response.data.results.filter(
+          (category) =>
+            category.owner === currentUser?.username && category.is_owner
+        );
+
         setCategories(
-          response.data.results.map((category) => ({
+          userCategories.map((category) => ({
             id: category.id,
             title: category.title,
             owner: category.owner,
@@ -67,7 +73,7 @@ const TaskEditForm = () => {
     } finally {
       setLoadingCategories(false);
     }
-  }, []);
+  }, [currentUser?.username]);
 
   useEffect(() => {
     fetchCategories();
@@ -121,7 +127,7 @@ const TaskEditForm = () => {
 
     try {
       await axiosReq.put(`/tasks/${id}/`, formData);
-      history.push(`/tasks/${id}`);
+      history.push(`/`);
       setSuccessMessage("Task edited!");
     } catch (err) {
       console.log(err);
@@ -131,10 +137,10 @@ const TaskEditForm = () => {
     }
   };
   if (loadingCategories) {
-    return <p>Loading categories...</p>;
+    return <p>Loading task...</p>;
   }
   const textFields = (
-    <div className="text-center">
+    <>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -165,26 +171,34 @@ const TaskEditForm = () => {
         </Alert>
       ))}
 
-      <Form.Check
-        type="checkbox"
-        id="important"
-        label="Important"
-        name="important"
-        checked={important}
-        onChange={handleChange}
-      />
+      <Form.Group className="d-flex align-items-center justify-content-center">
+        <div className="mr-3">
+          <Form.Check
+            type="checkbox"
+            id="important"
+            label="Important"
+            name="important"
+            checked={important}
+            onChange={handleChange}
+            className={taskStyles.TaskCheck}
+          />
+        </div>
 
-      <Form.Check
-        type="checkbox"
-        id="urgent"
-        label="Urgent"
-        name="urgent"
-        checked={urgent}
-        onChange={handleChange}
-      />
+        <div>
+          <Form.Check
+            type="checkbox"
+            id="urgent"
+            label="Urgent"
+            name="urgent"
+            checked={urgent}
+            onChange={handleChange}
+            className={taskStyles.TaskCheck}
+          />
+        </div>
+      </Form.Group>
 
-      <Form.Group>
-        <Form.Label>due</Form.Label>
+      <Form.Group className="mb-3">
+        <Form.Label className={taskStyles.DueDate}>Due Date:</Form.Label>
         <DatePicker
           selected={selectedDate}
           onChange={handleDate}
@@ -193,6 +207,7 @@ const TaskEditForm = () => {
           timeIntervals={15}
           dateFormat="MMMM d, yyyy h:mm aa"
           timeCaption="Time"
+          className="form-control"
         />
       </Form.Group>
       {errors?.due?.map((message, idx) => (
@@ -224,9 +239,9 @@ const TaskEditForm = () => {
           {message}
         </Alert>
       ))}
-        <Button onClick={() => history.goBack()}>cancel</Button>
-        <Button type="submit">create</Button>
-    </div>
+      <Button className={taskStyles.CancelButton} onClick={() => history.goBack()}>cancel</Button>
+      <Button className={taskStyles.CreateButton} type="submit">create</Button>
+    </>
   );
 
   return (
@@ -235,22 +250,26 @@ const TaskEditForm = () => {
         <Col sm={12} md={4} className={styles.TimerBox}>
           <Timer />
         </Col>
-        <Col sm={12} md={8} className={styles.TaskBox}>
-          Edit Task {taskData.title}
-          <Form onSubmit={handleSubmit}>
-            {successMessage && (
-              <Alert variant="success" onClose={() => setSuccessMessage("")} dismissible>
-                {successMessage}
-              </Alert>
-            )}
-            <Row>
-              <Col>{textFields}</Col>
-            </Row>
-          </Form>
+        <Col sm={12} md={8} className={`${styles.TaskBox} d-flex align-items-center justify-content-center`}>
+            <Form onSubmit={handleSubmit} className={taskStyles.Form}>
+            <h2>Edit Task {taskData.title}</h2>
+              {successMessage && (
+                <Alert
+                  variant="success"
+                  onClose={() => setSuccessMessage("")}
+                  dismissible
+                >
+                  {successMessage}
+                </Alert>
+              )}
+              <Row>
+                <Col>{textFields}</Col>
+              </Row>
+            </Form>
         </Col>
       </Row>
       <Row noGutters className={styles.BasePage}>
-      <Col sm={12} md={4} className={styles.HabitBox}>
+        <Col sm={12} md={4} className={styles.HabitBox}>
           <HabitManager />
         </Col>
         <Col sm={12} md={8} className={styles.NavBox}>
