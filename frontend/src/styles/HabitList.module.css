@@ -9,7 +9,6 @@
   margin-bottom: 16px;
   text-align: center;
   position: relative;
-  /* Add this line */
 }
 
 .Habit figure,
@@ -38,11 +37,25 @@ h5 {
 }
 
 .Button i:hover {
-  color: #a577d2;
+  color: #9b65d1;
 }
 
 .Button i {
-  font-size: 15px;
+  font-size: 18px;
+}
+
+.Button:hover:active {
+  background-color: transparent !important;
+}
+
+.Button:active {
+  background-color: transparent !important;
+}
+
+.Button:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .ButtonContainer {
