@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Alert, Row, Col } from "react-bootstrap";
 
 import styles from '../../styles/BasePage.module.css';
@@ -13,6 +13,7 @@ import NavBar from "../../components/NavBar";
 import Timer from "../timer/Timer";
 import HabitManager from "../habits/HabitManager";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import fetchCategories from "./FetchCategories";
 
 const TaskEditForm = () => {
   const currentUser = useCurrentUser();
@@ -48,36 +49,15 @@ const TaskEditForm = () => {
     });
   };
 
-  const fetchCategories = useCallback(async () => {
-    try {
-      const response = await axiosReq.get("/categories/");
-      if (response.data?.results) {
-        const userCategories = response.data.results.filter(
-          (category) =>
-            category.owner === currentUser?.username && category.is_owner
-        );
-
-        setCategories(
-          userCategories.map((category) => ({
-            id: category.id,
-            title: category.title,
-            owner: category.owner,
-            is_owner: category.is_owner,
-          }))
-        );
-      } else {
-        console.error("Invalid response format for categories:", response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    } finally {
-      setLoadingCategories(false);
-    }
-  }, [currentUser?.username]);
-
   useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
+    const fetchData = async () => {
+      const fetchedCategories = await fetchCategories(currentUser);
+      setCategories(fetchedCategories);
+      setLoadingCategories(false);
+    };
+
+    fetchData();
+  }, [currentUser]);
 
   useEffect(() => {
     const handleMount = async () => {

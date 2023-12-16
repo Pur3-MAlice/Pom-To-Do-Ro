@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useCallback } from "react";
-
+import React, { useState, useEffect } from "react";
 import { Button, Form, Alert, Row } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 import { axiosReq } from "../../api/axiosDefaults";
-
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import styles from "../../styles/CreateEditTask.module.css";
+import fetchCategories from "./FetchCategories";
 
 function CreateTask({ onToggle }) {
-
   const currentUser = useCurrentUser();
 
   const [taskData, setTaskData] = useState({
@@ -66,36 +63,15 @@ function CreateTask({ onToggle }) {
     });
   };
 
-  const fetchCategories = useCallback(async () => {
-    try {
-      const response = await axiosReq.get("/categories/");
-      if (response.data?.results) {
-        const userCategories = response.data.results.filter(
-          (category) =>
-            category.owner === currentUser?.username && category.is_owner
-        );
-
-        setCategories(
-          userCategories.map((category) => ({
-            id: category.id,
-            title: category.title,
-            owner: category.owner,
-            is_owner: category.is_owner,
-          }))
-        );
-      } else {
-        console.error("Invalid response format for categories:", response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    } finally {
-      setLoadingCategories(false);
-    }
-  }, [currentUser?.username]);
-
   useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
+    const fetchData = async () => {
+      const fetchedCategories = await fetchCategories(currentUser);
+      setCategories(fetchedCategories);
+      setLoadingCategories(false);
+    };
+
+    fetchData();
+  }, [currentUser]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

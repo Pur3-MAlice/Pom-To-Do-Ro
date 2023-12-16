@@ -1,3 +1,17 @@
-.Icon {
-    color: #779cd2;
+.Icon a,
+.Icon i {
+    color: #8bb0e9;
+}
+
+.Icon a:hover {
+    color: #c0d4f1;
+}
+
+.Icon a:hover i {
+    color: #bcd2f3;
+}
+
+.Name {
+    margin: 5px 0px 0px 5px;
+    color: #8bb0e9;
 }

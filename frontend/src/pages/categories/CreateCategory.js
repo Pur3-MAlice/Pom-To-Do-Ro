@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Alert, Row, Col, Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
-const CreateCategory = () => {
+function CreateCategory({ onClose }) {
   const [categoryData, setCategoryData] = useState({
     title: "",
     content: ""
@@ -39,16 +39,13 @@ const CreateCategory = () => {
       await axiosReq.post("/categories/", formData);
       clearForm();
       setSuccessMessage("Category created successfully!");
+      onClose()
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
-  };
-
-  const handleCancel = () => {
-    clearForm();
   };
 
   const textFields = ( 
@@ -82,7 +79,7 @@ const CreateCategory = () => {
           {message}
         </Alert>
       ))}
-        <Button onClick={handleCancel}>cancel</Button>
+        <Button onClick={() => onClose()}>cancel</Button>
         <Button type="submit">create</Button>
   </>
 );

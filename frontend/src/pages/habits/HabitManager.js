@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Row, Col, Modal } from "react-bootstrap";
 import HabitsTracker from "./HabitsTracker";
 import CreateHabit from "./CreateHabit";
-import appStyles from "../../../src/App.module.css";
 import styles from "../../styles/HabitList.module.css";
 import AddButton from "./AddButton.js";
 
