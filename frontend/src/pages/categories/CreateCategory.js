@@ -84,7 +84,6 @@ function CreateCategory({ onClose }) {
   </>
 );
 
-
   return (
     <Form onSubmit={handleSubmit}>
       {successMessage && (
