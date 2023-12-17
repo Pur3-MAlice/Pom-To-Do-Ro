@@ -14,23 +14,16 @@ function CreateTask({ onToggle }) {
     title: "",
     content: "",
     due: "",
-    urgent: "",
-    important: "",
+    urgent: false,
+    important: false,
     category: "",
   });
-
   const { title, content, due, urgent, important, category } = taskData;
-
   const [selectedDate, setSelectedDate] = useState(null);
-
   const [categories, setCategories] = useState([]);
-
   const [loadingCategories, setLoadingCategories] = useState(true);
-
   const [errors, setErrors] = useState({});
-
   const [successMessage, setSuccessMessage] = useState("");
-
   const clearForm = () => {
     setTaskData({
       title: "",
@@ -38,10 +31,8 @@ function CreateTask({ onToggle }) {
       due: "",
     });
   };
-
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-
     if (type === "checkbox") {
       setTaskData((prevData) => ({
         ...prevData,
@@ -54,7 +45,6 @@ function CreateTask({ onToggle }) {
       }));
     }
   };
-
   const handleDate = (date) => {
     setSelectedDate(date);
     setTaskData({
@@ -211,8 +201,12 @@ function CreateTask({ onToggle }) {
             {message}
           </Alert>
         ))}
-        <Button className={styles.CancelButton} onClick={() => onToggle()}>cancel</Button>
-        <Button className={styles.CreateButton} type="submit">create</Button>
+        <Button className={styles.CancelButton} onClick={() => onToggle()}>
+          cancel
+        </Button>
+        <Button className={styles.CreateButton} type="submit">
+          create
+        </Button>
       </Form>
     </Row>
   );
