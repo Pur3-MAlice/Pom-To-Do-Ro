@@ -233,7 +233,14 @@ Explore existing Pomodoro and to-do list apps to gather insights into design and
 
 ### Wireframes
 
-Create wireframes for the app's UI, including the Pomodoro timer, to-do list, and user authentication screens.
+Here are the wireframes for this project. 
+
+![Desktop Wireframe](/documentation/setup/desktop%20wireframe.png)
+
+![Tablet Wireframe](/documentation/setup/tablet%20wireframe.png)
+
+![Mobile Wireframe](/documentation/setup/mobile%20wireframe.png)
+
 
 ### Database Schema
 
