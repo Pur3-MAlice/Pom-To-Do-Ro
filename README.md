@@ -75,117 +75,6 @@ The app will include features such as:
 12. As a developer, I want to utilize React.js and Bootstrap.js to create an intuitive and visually appealing user interface.
 13. As a developer, I want to implement robust error handling and validation to ensure a smooth user experience.
 
-### Kanban Agile
-
-Used GitHub Projects for Agile project management, organizing tasks into sprints and tracking progress. Here is a link to the kanban board used [Pom-to-do-ro Kanban](https://github.com/users/Pur3-MAlice/projects/8/views/1?sortedBy%5Bdirection%5D=asc&sortedBy%5BcolumnId%5D=Labels)
-
-### Research
-
-Explore existing Pomodoro and to-do list apps to gather insights into design and functionality.
-
-### Wireframes
-
-Create wireframes for the app's UI, including the Pomodoro timer, to-do list, and user authentication screens.
-
-### Database Schema
-
-Define the data structure for storing user preferences and task data.
-
-## Development
-
-### Frontend
-
-Develop the React frontend, incorporating components for the Pomodoro timer, to-do list, and user authentication.
-
-### Backend
-
-Build the Django Rest Framework (DRF) backend to handle user authentication and data storage.
-
-### Connect Frontend to Backend
-
-Establish communication between the frontend and backend, enabling data retrieval and updates.
-
-### State Management
-
-Implement state management in React for handling the app's state, including timer progress and task data.
-
-## Testing
-
-### Manual Testing
-
-Thoroughly test each feature, including the Pomodoro timer, to-do list CRUD operations, and user authentication.
-
-### Bugs and Fixes
-
-Document and address any bugs encountered during testing, ensuring a smooth user experience.
-
-## Deployment
-
-### Final Deployment
-
-Deploy the Pom-to-do-ro app to a hosting platform, providing instructions for setting up and running the application.
-
-## Credits
-
-- General references:
-  - Stack Overflow
-  - Code Institute Learning Platform
-  - Django Documentation
-  - React Documentation
-- Inspirations from existing Pomodoro and to-do list apps.
-- Icons and graphics from [source].
-
-## Additional Information
-
-### Database
-
-#### User
-
-This table stores user account information.
-
-| Field        | Type     | Description                |
-| ------------ | -------- | -------------------------- |
-| id           | Integer  | Primary key                |
-| username     | String   | User's username            |
-| password     | String   | User's hashed password     |
-| date_joined  | DateTime | Date and time of registration |
-
-#### Habit
-
-This table stores information about user-defined habits.
-
-| Field   | Type      | Description       |
-| ------- | --------- | ----------------- |
-| id      | Integer   | Primary key        |
-| user    | Foreign Key| User who created the habit |
-| name    | String    | Name of the habit   |
-| checked | Boolean   | Habit checked off status |
-
-#### Task
-
-This table stores user-defined tasks.
-
-| Field     | Type      | Description         |
-| --------- | --------- | ------------------- |
-| id        | Integer   | Primary key          |
-| user      | Foreign Key| User who created the task |
-| name      | String    | Name of the task     |
-| due_date  | Date      | Due date for the task |
-| important | Boolean   | Task priority level  |
-| urgent    | Boolean   | Task priority level  |
-| category  | String    | Task category or type |
-
-#### Category
-
-This table stores task categories.
-
-| Field     | Type      | Description           |
-| --------- | --------- | --------------------- |
-| id        | Integer   | Primary key            |
-| user      | Foreign Key| User who created the task |
-| name      | String    | Name of the task       |
-| description | String  | Description of the task |
-
 ### Epics and User Stories
 
 #### Epic 1: User Management
@@ -333,3 +222,231 @@ This table stores task categories.
 
 - As a user, I want to be able to view my habit completion history over time in the form of cumulative streaks.
 - As a developer, I want to utilize React.js and Bootstrap.js to create an intuitive and visually appealing user interface.
+
+### Kanban Agile
+
+Used GitHub Projects for Agile project management, organizing tasks into sprints and tracking progress. Here is a link to the kanban board used [Pom-to-do-ro Kanban](https://github.com/users/Pur3-MAlice/projects/8/views/1?sortedBy%5Bdirection%5D=asc&sortedBy%5BcolumnId%5D=Labels)
+
+### Research
+
+Explore existing Pomodoro and to-do list apps to gather insights into design and functionality.
+
+### Wireframes
+
+Create wireframes for the app's UI, including the Pomodoro timer, to-do list, and user authentication screens.
+
+### Database Schema
+
+Define the data structure for storing user preferences and task data.
+
+#### ERD 
+![ERD](/documentation/setup/ERD.png)
+
+#### User
+
+This table stores user account information.
+
+| Field        | Type     | Description                |
+| ------------ | -------- | -------------------------- |
+| id           | Integer  | Primary key                |
+| username     | String   | User's username            |
+| password     | String   | User's hashed password     |
+| date_joined  | DateTime | Date and time of registration |
+
+#### Habit
+
+This table stores information about user-defined habits.
+
+| Field   | Type      | Description       |
+| ------- | --------- | ----------------- |
+| id      | Integer   | Primary key        |
+| user    | Foreign Key| User who created the habit |
+| name    | String    | Name of the habit   |
+| checked | Boolean   | Habit checked off status |
+
+#### Task
+
+This table stores user-defined tasks.
+
+| Field     | Type      | Description         |
+| --------- | --------- | ------------------- |
+| id        | Integer   | Primary key          |
+| user      | Foreign Key| User who created the task |
+| name      | String    | Name of the task     |
+| due_date  | Date      | Due date for the task |
+| important | Boolean   | Task priority level  |
+| urgent    | Boolean   | Task priority level  |
+| category  | String    | Task category or type |
+
+#### Category
+
+This table stores task categories.
+
+| Field     | Type      | Description           |
+| --------- | --------- | --------------------- |
+| id        | Integer   | Primary key            |
+| user      | Foreign Key| User who created the task |
+| name      | String    | Name of the task       |
+| description | String  | Description of the task |
+
+## Development
+
+### Frontend
+
+Develop the React frontend, incorporating components for the Pomodoro timer, to-do list, and user authentication.
+
+### Backend
+
+Build the Django Rest Framework (DRF) backend to handle user authentication and data storage.
+
+### Connect Frontend to Backend
+
+Establish communication between the frontend and backend, enabling data retrieval and updates.
+
+## Testing
+
+### Manual Testing Frontend
+
+Thoroughly test each feature, including the Pomodoro timer, to-do list CRUD operations, and user authentication.
+
+### Unit Testing Backend
+
+#### Definition: 
+- Unit testing is a testing methodology where individual units or components of a software are tested independently to ensure that each unit works as designed. It helps verify that each part of the software performs as expected. Unit tests are typically small, focused, and isolated to test a specific piece of functionality. I've use unit testing for the DRF backend of this app to ensure that the testing on the frontend could be used to independently test the React components functionality and error handling.  
+
+#### Habit Tests (`HabitListViewTests` and `HabitDetailViewTests`)
+
+##### Habit List View Tests (`HabitListViewTests`):
+
+1. **`test_logged_in_user_can_create_habit`**
+   - Ensures that a logged-in user can successfully create a habit.
+   - Verifies that the number of Habit objects increases by 1 and the response status is HTTP 201 (Created).
+
+2. **`test_user_not_logged_in_cant_create_task`**
+   - Verifies that a user who is not logged in cannot create a habit.
+   - Checks that the response status is HTTP 403 (Forbidden).
+
+##### Habit Detail View Tests (`HabitDetailViewTests`):
+
+1. **`test_can_retrieve_habit_using_valid_id`**
+   - Tests the ability to retrieve a habit using a valid ID.
+   - Verifies that the retrieved habit's title matches the expected value and the response status is HTTP 200 (OK).
+
+2. **`test_cant_retrieve_habit_using_invalid_id`**
+   - Tests that attempting to retrieve a habit with an invalid ID results in HTTP 404 (Not Found).
+
+3. **`test_user_can_update_own_habit`**
+   - Validates that a logged-in user can update their own habit.
+   - Checks that the habit's title is updated, and the response status is HTTP 200 (OK).
+
+4. **`test_user_cant_update_another_users_habit`**
+   - Ensures that a user cannot update another user's habit.
+   - Verifies that the response status is HTTP 403 (Forbidden).
+
+#### Task Tests (`TaskListViewTests` and `TaskDetailViewTests`)
+
+##### Task List View Tests (`TaskListViewTests`):
+
+1. **`test_can_list_tasks`**
+   - Verifies the ability to list tasks for a logged-in user.
+   - Checks that the response status is HTTP 200 (OK) and prints the data and length for manual inspection.
+
+2. **`test_logged_in_user_can_create_task`**
+   - Tests that a logged-in user can create a task successfully.
+   - Verifies that the number of Task objects increases by 1, and the response status is HTTP 201 (Created).
+
+3. **`test_user_not_logged_in_cant_create_task`**
+   - Ensures that a user who is not logged in cannot create a task.
+   - Checks that the response status is HTTP 403 (Forbidden).
+
+##### Task Detail View Tests (`TaskDetailViewTests`):
+
+1. **`test_can_retrieve_task_using_valid_id`**
+   - Validates the ability to retrieve a task using a valid ID.
+   - Verifies that the retrieved task's title matches the expected value, and the response status is HTTP 200 (OK).
+
+2. **`test_cant_retrieve_task_using_invalid_id`**
+   - Tests that attempting to retrieve a task with an invalid ID results in HTTP 404 (Not Found).
+
+3. **`test_user_can_update_own_task`**
+   - Ensures that a logged-in user can update their own task.
+   - Checks that the task's title is updated, and the response status is HTTP 200 (OK).
+
+4. **`test_user_cant_update_another_users_task`**
+   - Verifies that a user cannot update another user's task.
+   - Checks that the response status is HTTP 403 (Forbidden).
+
+#### Category Tests (`CategoryListViewTests` and `CategoryDetailViewTests`)
+
+##### Category List View Tests (`CategoryListViewTests`):
+
+1. **`test_logged_in_user_can_create_category`**
+   - Validates that a logged-in user can create a category.
+   - Checks that the number of Category objects increases by 1, and the response status is HTTP 201 (Created).
+
+2. **`test_user_not_logged_in_cant_create_task`**
+   - Ensures that a user who is not logged in cannot create a category.
+   - Checks that the response status is HTTP 403 (Forbidden).
+
+##### Category Detail View Tests (`CategoryDetailViewTests`):
+
+1. **`test_can_retrieve_category_using_valid_id`**
+   - Tests the ability to retrieve a category using a valid ID.
+   - Verifies that the retrieved category's title matches the expected value, and the response status is HTTP 200 (OK).
+
+2. **`test_cant_retrieve_category_using_invalid_id`**
+   - Validates that attempting to retrieve a category with an invalid ID results in HTTP 404 (Not Found).
+
+3. **`test_user_can_update_own_category`**
+   - Ensures that a logged-in user can update their own category.
+   - Checks that the category's title is updated, and the response status is HTTP 200 (OK).
+
+4. **`test_user_cant_update_another_users_category`**
+   - Verifies that a user cannot update another user's category.
+   - Checks that the response status is HTTP 403 (Forbidden).
+
+### Bugs and Fixes
+
+### Bug: [Brief Bug Description]
+
+- **Description:** [Provide a brief description of the bug.]
+
+- **Expected Result:** [Describe what you expected to happen.]
+
+- **Actual Result:** [Describe what actually happened.]
+
+- **Status:** [Open/Closed/Fixed]
+
+- **Fix:**
+  - [Brief description of the fix implemented.]
+
+---
+
+### Bug: Error 400 on Task creation
+
+- **Description:** Getting an Error 400 when trying to create a task. If you checked and then unchecked a task then it would go through but not until both checkbxes had been interacted with.
+
+- **Expected Result:** You could pass through a Task without it being urgent or important.
+
+- **Actual Result:** Error 400 on trying to create task. 
+
+- **Status:** Fixed
+
+- **Fix:**
+  - On the Form initalisation, have important and urgent marked as false. I previously had them as "", treating them like a textbox or an integer, rather than a boolean value. I also tried null, before realising that this wouldn't work for a boolean value.
+
+## Deployment
+
+### Final Deployment
+
+Deploy the Pom-to-do-ro app to a hosting platform, providing instructions for setting up and running the application.
+
+## Credits
+
+- General references:
+  - Stack Overflow
+  - Code Institute Learning Platform
+  - Django Documentation
+  - React Documentation
+  - Youtube
+- Inspirations from existing Pomodoro and to-do list apps.
