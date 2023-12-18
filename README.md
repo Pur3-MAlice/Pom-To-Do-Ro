@@ -744,14 +744,12 @@ During and throughout the development I thoroughly tested each feature and got a
 
 ### Final Deployment
 
-For deployment I followed this Code Insitute guide. 
-
-https://code-institute-students.github.io/advfe-unified-workspace/deployment/00-deployment
+For deployment I followed this Code Insitute guide: https://code-institute-students.github.io/advfe-unified-workspace/deployment/00-deployment
 
 #### Step 1: Setting up WhiteNoise for static files
-- install whitenoise==6.4.0
-- freeze the requirements.txt
-- create a static folder with `bash mkdir staticfiles`
+- Install whitenoise==6.4.0
+- Freeze the requirements.txt
+- Create a static folder with `bash mkdir staticfiles`
 - Add this code to settings Middleware `whitenoise.middleware.WhiteNoiseMiddleware`
 - Add this code to settings Template `os.path.join(BASE_DIR, 'staticfiles', 'build')`
 - In the static files section, add the STATIC_ROOT and WHITENOISE_ROOT variables and values to tell Django and WhiteNoise where to look for the admin static files and Reacts static files during deployment `STATIC_ROOT = BASE_DIR / 'staticfiles'`
@@ -764,11 +762,19 @@ https://code-institute-students.github.io/advfe-unified-workspace/deployment/00-
   - Remove the root_route code and replace it with the TemplateView pointing to the index.html file
   - At the bottom of the file, add the 404 handler to allow React to handle 404 errors
   - Add api/ to the beginning of all the API URLs
-  - excluding the path for the home page and admin panel
+  - Excluding the path for the home page and admin panel
 
-- In axiosDefault.js:
-  - Now that we have changed the base path for the API route, we need to prepend all API requests in our react application with /api. 
-  - Open the axiosDefaults.js file, comment back in the axios.defaults.baseURL and set it to "/api"
+- In axiosDefault.js (FRONTEND):
+  - Open the axiosDefaults.js file, comment in the axios.defaults.baseURL and set it to "/api"
+
+#### Step 3: Collecting Static files
+- Collect the admin and DRF staticfiles to the empty staticfiles directory, with this terminal command: `python3 manage.py collectstatic`
+- Next, compile the React application and move its files to the staticfiles folder. `cd frontend`
+- `npm run build && mv build ../staticfiles/.`
+
+#### Step 4: Adding a runtime.txt file
+- In the root directory, create a new file named runtime.txt 
+- Inside the runtime.txt, add the following line: `python-3.9.16`
 
 ## Credits
 
