@@ -350,21 +350,60 @@ In my app there are three main components that are being re-used in a significan
 
 #### 11. Features
 
+BasePage 
+
+![BasePage](/documentation/images/basepage.png)
+
+NavBar
+
+![NavBar](/documentation/images/nav_bar.png)
+
 Habits
+
 ![Habit Tracker](/documentation/images/habit_tracker_table.png)
 
 ![Add_Habit](/documentation/images/add_habit_modal.png)
 
 Timer
+
 ![Timer](/documentation/images/pomodoro_timer.png)
 
 ![Timer Inputs](/documentation/images/timer_inputs.png)
 
 ![Timer Countdown](/documentation/images/timer_visual_countdown.png)
 
-NavBar
 
 Tasks
+
+![Tasks](/documentation/images/tasks_withinternalscroll.png)
+
+![Automatic Delete](/documentation/images/automatic_delete.png)
+
+![Create Task](/documentation/images/createnewtask.png)
+
+![Edit Task](/documentation/images/edittask_page.png)
+
+![Date Picker](/documentation/images/date_picker.png)
+
+![Errors Task](/documentation/images/usererrors_edittask.png)
+
+
+Categories
+
+![Category Dropdown](/documentation/images/category_dropdown.png)
+
+![Category Modal](/documentation/images/category_modal.png)
+
+
+Authentication
+
+![Sign In Form](/documentation/images/signin_form.png)
+
+![Sign In Form](/documentation/images/signup_form.png)
+
+![Sign In Errors](/documentation/images/signin_errors.png)
+
+![Sign In Errors](/documentation/images/signup_errors.png)
 
 ### Backend
 
