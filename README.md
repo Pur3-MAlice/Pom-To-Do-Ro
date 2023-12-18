@@ -479,7 +479,17 @@ Integrated the frontend with the DRF backend. Using API calls (Axios) to interac
 
 ### Manual Testing Frontend
 
-Thoroughly test each feature, including the Pomodoro timer, to-do list CRUD operations, and user authentication.
+During and throughout the development I thoroughly tested each feature and got a volunteer to be my user to poitn out logical and user errors that might occur. Features tat were tested include the Pomodoro timer, to-do list CRUD operations, habit tracking, and user authentication. Here are images of the spread sheet used to track the manual testing.
+
+![NavBar Tests](/documentation/testing/NavBar%20testing.png)
+
+![Habit Tests](/documentation/testing/Habit%20testing.png)
+
+![SignIn/Up Tests](/documentation/testing/signup%20testing.png)
+
+![Task Tests](/documentation/testing/Task%20testing.png)
+
+![Timer Tests](/documentation/testing/Timer%20testing.png)
 
 ### Unit Testing Backend
 
