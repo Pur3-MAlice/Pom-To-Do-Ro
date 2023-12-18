@@ -776,6 +776,13 @@ For deployment I followed this Code Insitute guide: https://code-institute-stude
 - In the root directory, create a new file named runtime.txt 
 - Inside the runtime.txt, add the following line: `python-3.9.16`
 
+#### Step 5: Testing the Build
+- Ensure all running servers are terminated. In any running terminals press Ctrl+C
+- In THE env.py file, ensure that both the DEBUG and DEV environment variables are commented out
+- Run the Django server.
+- Open the preview on port 8000 to check that your application is running
+- If bad request, then make sure the GitPod URL is the new version then re-start or refresh the server.
+
 ## Credits
 
 - General references:
