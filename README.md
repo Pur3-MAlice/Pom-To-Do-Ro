@@ -780,8 +780,16 @@ For deployment I followed this Code Insitute guide: https://code-institute-stude
 - Ensure all running servers are terminated. In any running terminals press Ctrl+C
 - In THE env.py file, ensure that both the DEBUG and DEV environment variables are commented out
 - Run the Django server.
-- Open the preview on port 8000 to check that your application is running
+- Open the preview on port 8000 to check that the application is running
 - If bad request, then make sure the GitPod URL is the new version then re-start or refresh the server.
+
+#### Step 5: Preparing for Deployment
+- Log into  Heroku account and access the dashboard for the DRF application
+- Go to Settings and open the Config Vars
+- Ensure the application has an ALLOWED_HOST key, set to the URL of the combined project, remove the https:// at the beginning and remove the trailing slash at the end
+- Ensure the application has a CLIENT_ORGIN key and set it to the URL of the combined project. This time keep the https:// at the beginning but remove the trailing slash at the end
+- Ensure all the settings are in place, including the ones from the Deployment section of the Django REST Framework module. Including saving, committing and pushing any changes made to the code
+- Deploy the application from the Deploy tab in the Heroku dashboard
 
 ## Credits
 
