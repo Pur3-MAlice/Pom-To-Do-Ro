@@ -3,6 +3,8 @@ import SettingsContext from "../../contexts/SettingsContext";
 import { Row, Col } from "react-bootstrap";
 import styles from "../../styles/Timer.module.css"
 
+
+// Inspired by the tutorials of Aleks Popovic & Coding With Dawid
 function Settings() {
   const settingsInfo = useContext(SettingsContext);
 

@@ -63,7 +63,28 @@
 
 .TaskButton i:hover {
     color: #8BB0E9;
+    background-color: transparent;
+    border: transparent;
 }
+
+.TaskButton i:hover {
+    color: #8BB0E9;
+}
+
+.TaskButton:hover:active {
+    background-color: transparent !important;
+}
+
+.TaskButton:active {
+    background-color: transparent !important;
+}
+
+.TaskButton:focus {
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 
 @media (max-width: 767px) {
 

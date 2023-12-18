@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+// Inspired by the tutorials of Aleks Popovic & Coding With Dawid
 class GradientSVG extends Component {
     render() {
       let { startColor, endColor, idCSS, rotation } = this.props;

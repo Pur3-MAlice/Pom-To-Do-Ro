@@ -9,11 +9,12 @@ import GradientSVG from "./GradientSVG";
 import SettingsContext from "../../contexts/SettingsContext";
 import Settings from "./Settings";
 
+// Inspired by the tutorials of Aleks Popovic & Coding With Dawid
 function PomodoroTimer() {
   const settingsInfo = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
-  const [mode, setMode] = useState("work"); // work/break/null
+  const [mode, setMode] = useState("work");
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [completedWorkSessions, setCompletedWorkSessions] = useState(0);
 

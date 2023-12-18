@@ -79,8 +79,10 @@ function CreateCategory({ onClose }) {
           {message}
         </Alert>
       ))}
+      <Modal.Footer>
         <Button onClick={() => onClose()}>cancel</Button>
         <Button type="submit">create</Button>
+      </Modal.Footer>  
   </>
 );
 

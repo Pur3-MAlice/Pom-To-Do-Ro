@@ -798,5 +798,10 @@ For deployment I followed this Code Insitute guide: https://code-institute-stude
   - Code Institute Learning Platform
   - Django Documentation
   - React Documentation
-  - Youtube
+  - Youtube (tutorials watched from these creators to inspire my app)
+    - https://www.youtube.com/@CodingWithDawid 
+    - https://www.youtube.com/@AleksPopovic
+    - https://www.youtube.com/@BekBrace
+    - https://www.youtube.com/@programmingwithmosh
+    - https://www.youtube.com/@8020Coding
 - Inspirations from existing Pomodoro and to-do list apps.
