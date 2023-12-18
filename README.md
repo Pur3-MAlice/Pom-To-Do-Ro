@@ -467,9 +467,101 @@ Authentication
 
 ![Sign In Errors](/documentation/images/signup_errors.png)
 
-### Backend
+## Backend
 
-Build the Django Rest Framework (DRF) backend to handle user authentication and data storage. 
+The backend of Pom-to-do-ro is powered by Django Rest Framework (DRF), a robust toolkit for building Web APIs in Django applications. The backend handles user authentication, manages data storage, and serves data to the frontend.
+
+### Technologies Used
+
+- **Django:** A Python web framework that helps with quick development.
+
+- **Django Rest Framework (DRF):** A powerful framework for building Web APIs based on Django.
+
+### User Authentication
+
+Pom-to-do-ro uses Django's built-in authentication system to handle user registration, login, and logout functionalities. Users can securely create accounts with their username and password, log in to access their personalized dashboard, and log out for security and privacy.
+
+### Data Models
+
+The backend defines several data models to represent the core entities of the application:
+
+#### User Model
+
+The `User` model stores information about registered users, including a unique username, a hashed password for security, and the date and time of registration.
+
+| Field       | Type      | Description                     |
+| ----------- | --------- | ------------------------------- |
+| id          | Integer   | Primary key                     |
+| username    | String    | User's username                 |
+| password    | String    | User's hashed password          |
+| date_joined | DateTime  | Date and time of registration   |
+
+#### Habit Model
+
+The `Habit` model represents the daily habits that users can create and track. It includes the habit's name, a reference to the user who created it, and a boolean field to track if the habit is checked off for the day.
+
+| Field   | Type      | Description                  |
+| ------- | --------- | ---------------------------- |
+| id      | Integer   | Primary key                  |
+| user    | Foreign Key| User who created the habit   |
+| name    | String    | Name of the habit            |
+| checked | Boolean   | Habit checked off status     |
+
+#### Task Model
+
+The `Task` model represents user-defined tasks, including details such as the task name, due date, importance, urgency, category, and completion status.
+
+| Field     | Type      | Description                 |
+| --------- | --------- | --------------------------- |
+| id        | Integer   | Primary key                 |
+| user      | Foreign Key| User who created the task    |
+| name      | String    | Name of the task             |
+| due_date  | Date      | Due date for the task        |
+| important | Boolean   | Task priority level         |
+| urgent    | Boolean   | Task priority level         |
+| category  | String    | Task category or type        |
+
+#### Category Model
+
+The `Category` model is used to categorize tasks. It includes a name and description.
+
+| Field       | Type      | Description               |
+| ----------- | --------- | ------------------------- |
+| id          | Integer   | Primary key               |
+| user        | Foreign Key| User who created the task |
+| name        | String    | Name of the category       |
+| description | String    | Description of the category|
+
+### API Endpoints
+
+Pom-to-do-ro's backend exposes various API endpoints to interact with the data. The specific endpoints include:
+
+- `/admin/`: Django admin panel for site administration.
+- `/api-auth/`: Django Rest Framework's browsable API authentication.
+- `/dj-rest-auth/`: Authentication and registration endpoints provided by `dj-rest-auth`.
+- `/dj-rest-auth/registration/`: Endpoint for user registration.
+- `/profiles/`: Endpoint for user profiles.
+- `/profiles/<int:pk>/`: Endpoint for individual user profiles.
+- `/tasks/`: Handles CRUD operations for tasks.
+- `/tasks/<int:pk>/`: Endpoint for individual tasks.
+- `/categories/`: Endpoint for task categories (list).
+- `/categories/<int:pk>/`: Endpoint for individual task categories.
+- `/habits/`: Handles CRUD operations for habits.
+- `/habits/<int:pk>/`: Endpoint for individual habits.
+
+### Backend Structure
+
+The backend is organized following a Django app structure, with separate apps for managing authentication, tasks, habits, and categories. Key components include:
+
+- **`models.py`:** Defines the models for habits, tasks, categories, and users.
+- **`serializers.py`:** Converts data to aid the transfer of data between the frontend and backend.
+- **`views.py`:** Contains the logic for handling HTTP requests.
+- **`urls.py`:** Maps URL patterns to view the web app.
+- **`tests.py`:** Defines the Unit test for each app.
+
+### Development Process
+
+The development of the backend involved creating the necessary data models, serializers, views, and URL patterns. The Django Rest Framework played a huge role in simplifying the creation of APIs.
 
 ### Connect Frontend to Backend
 
