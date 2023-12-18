@@ -22,6 +22,7 @@ In a market saturated with standalone productivity apps, so Pom-to-do-ro emerges
    - [Research](#research)
    - [Wireframes](#wireframes)
    - [Database Schema](#database-schema)
+   - [Design](#design)
 3. [Development](#development)
    - [Frontend](#frontend)
    - [Backend](#backend)
@@ -304,6 +305,36 @@ This table stores task categories.
 | user      | Foreign Key| User who created the task |
 | name      | String    | Name of the task       |
 | description | String  | Description of the task |
+
+### Design
+
+#### Font Choice
+
+The choice of fonts for a web or mobile app is a crucial design decision that can significantly impact the overall user experience. The fonts I decided on needed to align with the app's visual modern identity, readability, and the overall design aesthetics.
+
+Readability
+- *Archivo:*
+  - Has clarity and readability, featuring well-balanced proportions that contribute to good legibility.
+  - Particularly beneficial for users needing to quickly read details on the page before engaging in other reading-intensive tasks.
+
+- *Open Sans:*
+  - Designed with legibility in mind, ensuring easy reading on screens.
+  - A versatile and widely recognized font, suitable for various reading skills, especially those with dyslexia.
+
+Modern Aesthetics
+- *Archivo:*
+  - Has a modern and clean design, conveying a sense of modernism and sophistication.
+  - Stylish yet bold, making it suitable for contemporary app interfaces.
+
+- *Open Sans:*
+  - Features a neutral and friendly appearance, adapting well to modern design aesthetics.
+  - Versatile in nature, allowing for seamless integration into various interfaces.
+
+#### Colors
+
+
+
+#### 4x4 Grid
 
 ## Development
 
