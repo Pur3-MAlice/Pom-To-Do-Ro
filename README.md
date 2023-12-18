@@ -29,7 +29,8 @@ In a market saturated with standalone productivity apps, so Pom-to-do-ro emerges
    - [Connect Frontend to Backend](#connect-frontend-to-backend)
    - [State Management](#state-management)
 4. [Testing](#testing)
-   - [Manual Testing](#manual-testing)
+   - [Manual Testing](#manual-testing-frontend)
+   - [Unit Testing](#unit-testing-backend)
    - [Bugs and Fixes](#bugs-and-fixes)
 5. [Deployment](#deployment)
    - [Final Deployment](#final-deployment)
@@ -578,20 +579,18 @@ Thoroughly test each feature, including the Pomodoro timer, to-do list CRUD oper
 
 ### Bugs and Fixes
 
-### Bug: [Brief Bug Description]
+### Bug: Category not going through.
 
-- **Description:** [Provide a brief description of the bug.]
+- **Description:** Whilst the category could be seen in the frontend, picked. And I could pull both the titles and the IDs for each category assigned to the user. They weren't passing through the form to the backend/server. I was getting a 400 error response when clicking create. So whilst we could see all the data, it wasn't being passed, therefore the task couldn't be created.
 
-- **Expected Result:** [Describe what you expected to happen.]
+- **Expected Result:** the form to pass through correctly and a task to be created.
 
-- **Actual Result:** [Describe what actually happened.]
+- **Actual Result:** error 400
 
-- **Status:** [Open/Closed/Fixed]
+- **Status:** Fixed
 
 - **Fix:**
-  - [Brief description of the fix implemented.]
-
----
+  - The serializer needed changing from category = CategorySerializer(required=False) to category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
 
 ### Bug: Error 400 on Task creation
 
@@ -605,6 +604,39 @@ Thoroughly test each feature, including the Pomodoro timer, to-do list CRUD oper
 
 - **Fix:**
   - On the Form initalisation, have important and urgent marked as false. I previously had them as "", treating them like a textbox or an integer, rather than a boolean value. I also tried null, before realising that this wouldn't work for a boolean value.
+
+### Bug: Habit checks not changing the server or saving
+
+- **Description:** The habit tracking part of my app and the checkbox for each day of the week. I had built the code to click and frontend update and the console logs all showed the right version of the T/F on the checkbox but the back end wasn't updating. The terminal was showing a PATCH 200, so it was going through fine but wasn't actaully updating the server. 
+
+- **Expected Result:** [Describe what you expected to happen.]
+
+- **Actual Result:** PATCH 200, says okay but server not chaning
+
+- **Status:** Fixed
+
+- **Fix:**
+  - Read only was set in the backend for each of the checkboxes. So I needed to change the Read Only to false, this fixed the issue.
+
+### Bug: Warning for Imp/Urg checkboxes
+
+- **Description:** Getting a Warning when checking the Imp/Urg checkboxes and then clicking create to create a task. "A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component"
+
+- **Steps to Reproduce:**
+  1. Click the add task button. '+' top right.
+  2. Add all the details, including checking one or both of the Imp.Urg checkboxes. 
+  3. Make sure all other details are correct and entered.
+  4. Have the console open.
+  5. Click create and view the warning.
+
+- **Expected Result:** No error hopefully.
+
+- **Actual Result:** The checkboxes and the whole functionality still work but the warning is still being thrown. It has no impact on the app other than this.
+
+- **Status:** Open
+
+- **Fix:**
+  - N/A
 
 ## Deployment
 
