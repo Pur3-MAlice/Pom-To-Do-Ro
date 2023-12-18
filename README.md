@@ -227,8 +227,18 @@ Used GitHub Projects for Agile project management, organizing tasks into sprints
 
 When researching pomodoro apps and task management apps. I realised that not alot of these webistes add in a combination of these features, or they tend to (in my opinion) over complicate things. I wanted to make sure i had the basic functionailty of both a task management app and a pomodoro timer without overstimulating the user, or over facing them with too many options. How to use the app should be intuitive and natural, there shouldn't be a need to a guide or a how to use. Some apps I took inspiration from are listed below:
 
+[pomodorokitty](https://pomodorokitty.com/)
 
-AOAOOFEHSFEEEOWJIWEJIOFWOJIEFJIOWEFIJOFWEIOJEWFOJIFWEOJIFWEOJIEFWOJIFEWIJOFWEJIOFWEJIOWEFOJIEFWOIJEFWJOJIOWEFOJIFWEOJIFWOIJEWFIJOEFWOJIFEWOJIDSKSDFFDMKFDSMKKFSDMMKLDFSMKLDSFMKFDSLMKFDSLMKDFSMKLFDSMKLFDS
+[studywithme](https://studywithme.io/aesthetic-pomodoro-timer/)
+
+[tomatotimers](https://www.tomatotimers.com/)
+
+[pomofocus](https://pomofocus.io/)
+
+[todoist](https://todoist.com/)
+
+[notion](https://www.notion.so/)
+
 
 ### Wireframes
 
@@ -331,24 +341,19 @@ Integrated user authentication components to handle user registration, login and
 
 I set up routing using React Router to enable navigation between different sections of my app. And then defined routes for the Pomodoro timer, to-do list, and authentication pages.
 
-#### 7. Connect to Backend
-
-Integrated the frontend with the DRF backend. Using API calls (Axios) to interact with my backend's endpoints for tasks, habits, categories, and user/profile.
-
-#### 8. Styling and Responsiveness
+#### 7. Styling and Responsiveness
 
 Applied styles to components using CSS and React Bootstrap. Ensured that my app was responsive and provides a consistent user experience across different devices.
 
-#### 9. Testing
+#### 8. Testing
 
 Then after all the above I wrote manual tests for components and features. I then asked my Computer Scientist Friends to perform the thorough testing to catch bugs, which I would go on to fix. To be honest I did small testing throughout the development process, to ensure the app was being built correctly. Go to [Testing](#testing) for more details.
 
-
-#### 10. Reused components 
+#### 9. Reused components 
 
 In my app there are three main components that are being re-used in a significant way. Task, Habit, and fetchCategories. The Task component is being used by the TaskList component, and being mapped over making sure each task that is owned by the user is being sent to the TastList to be shown on the frontend. The Habit component is also used in a simialar way. The other significant reused component is the fetchCategories component, which is used by the CreateTask and EditTask alike. Due to the fact that both of these forms are reliant on the category dropdown menu. The category dropdown menu needs to pull and then map over all categories, find the title and the id, pass the title of the category to the frontend and once chosen pass the id to the backend.
 
-#### 11. Features
+#### 10. Features
 
 BasePage 
 
@@ -407,11 +412,11 @@ Authentication
 
 ### Backend
 
-Build the Django Rest Framework (DRF) backend to handle user authentication and data storage.
+Build the Django Rest Framework (DRF) backend to handle user authentication and data storage. 
 
 ### Connect Frontend to Backend
 
-Establish communication between the frontend and backend, enabling data retrieval and updates.
+Integrated the frontend with the DRF backend. Using API calls (Axios) to interact with my backend's endpoints for tasks, habits, categories, and user/profile. I also followed the Code Insitute Intructions on how to create a React and DRF app in one repo. Here: [Project unification documentation](https://code-institute-students.github.io/advfe-unified-workspace/creating-an-app-in-a-workspace/00-creating-an-app-in-a-workspace)
 
 ## Testing
 
@@ -549,7 +554,9 @@ Thoroughly test each feature, including the Pomodoro timer, to-do list CRUD oper
 
 ### Final Deployment
 
-Deploy the Pom-to-do-ro app to a hosting platform, providing instructions for setting up and running the application.
+For deployment I followed this Code Insitute guide. 
+
+https://code-institute-students.github.io/advfe-unified-workspace/deployment/00-deployment
 
 ## Credits
 
