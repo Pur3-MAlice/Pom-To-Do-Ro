@@ -188,15 +188,16 @@ The app will include features such as:
 | Create and Manage Habits  | 4                | 3                           |
 | Mark Off Completed Habits | 3                | 3                           |
 | Create and Manage Tasks   | 4                | 3                           |
-| Prioritize and Categorize Tasks | 4           | 3                           |
-| Task Notifications        | 3                | 4                           |
+| Prioritize and Categorize Tasks | 4           | 3                          |
 | Pomodoro Timer            | 4                | 4                           |
 | Admin Features            | 4                | 3                           |
 | Backend Integration (API) | 4                | 3                           |
 | Error Handling and Validation | 3            | 4                           |
 | Testing and Deployment    | 4                | 4                           |
 
-### M/S/C Must (High Priority):
+### M/S/C 
+
+### Must (High Priority):
 
 - As a new user, I want to be able to register for an account with my email and password so that I can access the app.
 - As a registered user, I want to be able to log in with my email and password to access my personalized dashboard.
@@ -253,8 +254,6 @@ Here are the wireframes for this project.
 
 
 ### Database Schema
-
-Define the data structure for storing user preferences and task data.
 
 #### ERD 
 ![ERD](/documentation/setup/ERD.png)
@@ -331,10 +330,36 @@ Modern Aesthetics
   - Versatile in nature, allowing for seamless integration into various interfaces.
 
 #### Colors
+Background Colors
+- *#152b37 (Gunmetal Blue):* Suitable for backgrounds or headers, providing a visually pleasing contrast with lighter content.
 
+- *#06551a (Cal Poly Green):* Ideal for accents and buttons, conveying a sense of calmness and connection to nature.
 
+- *#183593 (Egyptian Blue):* Use for headers, borders, or other design elements, associated with professionalism and trust.
+
+- *#a577d2 (Lavender):* Great for highlighting important elements or interactive components, suggesting creativity and calmness.
+
+- *#6d33a7 (Grape):* Complementary to other colors, conveying sophistication.
+
+Text Colors
+- *#8bb0e9 (Jordy Blue):* Offers a clean and modern look, enhancing readability on dark backgrounds, associated with tranquility.
+
+- *#ffffff (White):* A classic choice providing high contrast on dark backgrounds, ensuring good readability and contributing to a clean design.
+
+My Considerations
+- Ensuring sufficient contrast between text and background colors for optimal readability. Using only AA or AAA contrasts
+- Consider accessibility guidelines to make your design inclusive for users with different visual abilities. Using only AA or AAA contrasts
+
+![Color Choice](/documentation/setup/colorscheme.png)
+
+![Contrast Grid](/documentation/setup/accesibilitycolors.png)
 
 #### 4x4 Grid
+In designing the home page of my React app, I've opted for a layout that encapsulates the essential components in one place, following an asymmetry that remains visually pleasing, modern yet intuative. The choice to bring everything together in a cohesive manner serves multiple purposes, all geared towards enhancing user experience and streamlining the app's primary objective: making the user's life easier through effective task management.
+
+The asymmetrical design not only adds an element of uniqueness but also helps break away from a monotonous, predictable layout Moreover, by using React Bootstrap's responsive grid system, I've ensured that the layout adapts seamlessly to various screen sizes.
+
+*Ultimately, the goal was to create an environment where everything the user needs is in one place, making their experience seamless – simplifying and improving the user's life and to-do list.*
 
 ## Development
 
