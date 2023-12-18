@@ -467,6 +467,29 @@ Authentication
 
 ![Sign In Errors](/documentation/images/signup_errors.png)
 
+#### 11. Front-End Libraries Used
+
+- **React:**
+  - *Usage:* React is a JavaScript library for building user interfaces. It creates reusable UI components.
+
+- **React-Bootstrap:**
+  - *Usage:* React-Bootstrap is a React adaptation of the Bootstrap framework, providing pre-designed UI components as React components. It allows developers to use Bootstrap's styling and components within React applications.
+
+- **React-Router-DOM:**
+  - *Usage:* React-Router-DOM is a library for adding navigation and routing functionality to React applications.
+
+- **Axios:**
+  - *Usage:* Axios simplifies the process of making HTTP requests from a web application. Axios is used to communicate with a server to fetch or send data.
+
+- **React-DatePicker:**
+  - *Usage:* React-DatePicker is a flexible and customizable datepicker component for React. It provides a user-friendly way to pick dates. Used in forms where date selection is required.
+
+- **React-Circular-Progressbar:**
+  - *Usage:* React-Circular-Progressbar is a circular progress bar component for React. It is used to display visual progress indicators in a circular form.
+
+- **Context API:**
+  - *Usage:* Context API is part of React and provides a way to share values (such as state) across components without having to pass them through props explicitly.
+
 ## Backend
 
 The backend of Pom-to-do-ro is powered by Django Rest Framework (DRF), a robust toolkit for building Web APIs in Django applications. The backend handles user authentication, manages data storage, and serves data to the frontend.
