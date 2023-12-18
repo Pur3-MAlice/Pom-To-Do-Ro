@@ -34,10 +34,6 @@ In a market saturated with standalone productivity apps, so Pom-to-do-ro emerges
    - [Final Deployment](#final-deployment)
 6. [Credits](#credits)
 
-## Introduction
-
-Pom-to-do-ro is a productivity application designed to help users manage their habits, tasks, and work sessions using the Pomodoro technique. The application provides a platform for users to register, log in, create and track habits, manage tasks, and utilize a Pomodoro timer for focused work sessions.
-
 ## Planning Phase
 
 ### App Overview
@@ -229,7 +225,10 @@ Used GitHub Projects for Agile project management, organizing tasks into sprints
 
 ### Research
 
-Explore existing Pomodoro and to-do list apps to gather insights into design and functionality.
+When researching pomodoro apps and task management apps. I realised that not alot of these webistes add in a combination of these features, or they tend to (in my opinion) over complicate things. I wanted to make sure i had the basic functionailty of both a task management app and a pomodoro timer without overstimulating the user, or over facing them with too many options. How to use the app should be intuitive and natural, there shouldn't be a need to a guide or a how to use. Some apps I took inspiration from are listed below:
+
+
+AOAOOFEHSFEEEOWJIWEJIOFWOJIEFJIOWEFIJOFWEIOJEWFOJIFWEOJIFWEOJIEFWOJIFEWIJOFWEJIOFWEJIOWEFOJIEFWOIJEFWJOJIOWEFOJIFWEOJIFWOIJEWFIJOEFWOJIFEWOJIDSKSDFFDMKFDSMKKFSDMMKLDFSMKLDSFMKFDSLMKFDSLMKDFSMKLFDSMKLFDS
 
 ### Wireframes
 
@@ -298,9 +297,74 @@ This table stores task categories.
 
 ## Development
 
+At this projects' initalisation, I built my frontend inside the directory of the back end so I could have both the front and backend initalised at the same time and contained within one reporsitory. Therefore the creation of the frontend, which came after the inital build of the backend to create a strong foundations, naturally involves the creation of the backend.
+
 ### Frontend
 
-Develop the React frontend, incorporating components for the Pomodoro timer, to-do list, and user authentication.
+#### 1. Setting Up the Project
+
+Initialized my frontend project using the Create React App for a quick and efficient setup. This provided a sensible project structure, build scripts, and development server out of the box.
+
+```bash
+npx create-react-app your-app-name
+cd your-app-name 
+```
+I followed the Code Insitute Intructions on how to create a React and DRF app in one repo. Here: [Project unification documentation](https://code-institute-students.github.io/advfe-unified-workspace/creating-an-app-in-a-workspace/00-creating-an-app-in-a-workspace)
+
+#### 2. Design the UI Components
+
+I identified the main components needed for the app, such as the Pomodoro timer, to-do list, habit tracker and authentication components. Break down the UI into reusable and manageable components.
+
+#### 3. Implement the Pomodoro Timer
+
+Created a component for the Pomodoro timer. Used the React state to manage the timer's state, including the current time remaining, whether it's paused or active, the time inputs and work/break/longbreak functions.
+
+#### 4. Develop the To-Do List
+
+Built components for creating, viewing, editing, and deleting tasks in the to-do list. Implemented functionalities such as marking tasks as completed, categorising tasks, and organizing them by Important/Urgent.
+
+#### 5. User Authentication
+
+Integrated user authentication components to handle user registration, login and logout.
+
+#### 6. Implement Routing
+
+I set up routing using React Router to enable navigation between different sections of my app. And then defined routes for the Pomodoro timer, to-do list, and authentication pages.
+
+#### 7. Connect to Backend
+
+Integrated the frontend with the DRF backend. Using API calls (Axios) to interact with my backend's endpoints for tasks, habits, categories, and user/profile.
+
+#### 8. Styling and Responsiveness
+
+Applied styles to components using CSS and React Bootstrap. Ensured that my app was responsive and provides a consistent user experience across different devices.
+
+#### 9. Testing
+
+Then after all the above I wrote manual tests for components and features. I then asked my Computer Scientist Friends to perform the thorough testing to catch bugs, which I would go on to fix. To be honest I did small testing throughout the development process, to ensure the app was being built correctly. Go to [Testing](#testing) for more details.
+
+
+#### 10. Reused components 
+
+In my app there are three main components that are being re-used in a significant way. Task, Habit, and fetchCategories. The Task component is being used by the TaskList component, and being mapped over making sure each task that is owned by the user is being sent to the TastList to be shown on the frontend. The Habit component is also used in a simialar way. The other significant reused component is the fetchCategories component, which is used by the CreateTask and EditTask alike. Due to the fact that both of these forms are reliant on the category dropdown menu. The category dropdown menu needs to pull and then map over all categories, find the title and the id, pass the title of the category to the frontend and once chosen pass the id to the backend.
+
+#### 11. Features
+
+Habits
+![Habit Tracker](/documentation/images/habit_tracker_table.png)
+
+![Add_Habit](/documentation/images/add_habit_modal.png)
+
+Timer
+![Timer](/documentation/images/pomodoro_timer.png)
+
+![Timer Inputs](/documentation/images/timer_inputs.png)
+
+![Timer Countdown](/documentation/images/timer_visual_countdown.png)
+
+NavBar
+
+Tasks
 
 ### Backend
 
