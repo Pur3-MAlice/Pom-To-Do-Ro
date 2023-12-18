@@ -3,7 +3,7 @@ Pom-to-do-ro is a productivity application designed to help users manage their h
 
 ### Who is Pom-to-do-ro For?
 
-Pom-to-do-ro is designed with a compassionate understanding of the diverse needs of users, especially those grappling with ADHD, executive dysfunction, or the overwhelming whirlwind of modern life - like myself. If you've ever felt the frustration of juggling multiple productivity apps, each catering to a specific need, Pom-to-do-ro is your all-in-one haven as it offers a holistic solution that understands the intricate interplay between habits, tasks, and time management, whilst also being an intuative design in a calming colour scheme.
+Pom-to-do-ro is designed for the diverse needs of users, especially those grappling with ADHD, executive dysfunction, or the overwhelming whirlwind of modern life - like myself. If you've ever felt the frustration of juggling multiple productivity apps, each catering to a specific need, Pom-to-do-ro is your all-in-one haven as it offers a holistic solution that understands the intricate interplay between habits, tasks, and time management, whilst also being an intuative design in a calming colour scheme.
 
 ### Why this app, why now?
 
