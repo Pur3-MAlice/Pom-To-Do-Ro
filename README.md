@@ -11,6 +11,8 @@ In a market saturated with standalone productivity apps, so Pom-to-do-ro emerges
 
 ![Pom-to-do-ro Logo](/documentation/images/favicon_png_image.png)
 
+![Responsive Image of App](/documentation/setup//responsive%20image.png)
+
 ## Table Of Contents
 
 1. [Pom-to-do-ro](#pom-to-do-ro)
